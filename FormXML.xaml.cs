@@ -1,13 +1,10 @@
 ﻿using Microsoft.Win32;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Xml;
 
 namespace CSVXML_TemplateEditor
 {
@@ -24,7 +21,7 @@ namespace CSVXML_TemplateEditor
         private void LoadFileMouseDown(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = "Documents(*.XML;*.CSV)|*.XML;*.CSV";
+            myDialog.Filter = "Documents(*.xml;*.csv)|*.XML;*.csv";
 
             if (myDialog.ShowDialog() == true)
             {
@@ -78,6 +75,37 @@ namespace CSVXML_TemplateEditor
             smf.PasteToClipBoard();
         }
 
+        private void SaveAsFileMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SaveFileDialog myDialog = new SaveFileDialog();
+            myDialog.Filter = "XML-Document (*.xml)|*.xml|CSV-Document (*.csv)|*.csv";
+            if (myDialog.ShowDialog() == true)
+            {
+                SomeFunctions smf = new SomeFunctions();
+                smf.CheckClipBoard();
+                PatchOpenFile = myDialog.FileName;
+                ExtensionOpenFile = myDialog.FileName.Substring(myDialog.FileName.LastIndexOf('.'));
+                if (ExtensionOpenFile == ".xml")
+                {
+                    XMLTable.SelectAllCells();
+                    XMLTable.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+                    ApplicationCommands.Copy.Execute(null, XMLTable);
+                    XMLTable.UnselectAll();
+                    smf.TableToCSV("tempfile.csv");
+                    smf.CSV_XML("tempfile.csv", PatchOpenFile, "users", "user");
+                    File.Delete("tempfile.csv");
+                }
+                else if (ExtensionOpenFile == ".csv")
+                {
+                    XMLTable.SelectAllCells();
+                    XMLTable.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+                    ApplicationCommands.Copy.Execute(null, XMLTable);
+                    XMLTable.UnselectAll();
+                    smf.TableToCSV(PatchOpenFile);
+                }
+                smf.PasteToClipBoard();
+            }
+        }
 
 
         private void LoadFileMouseEnter(object sender, MouseEventArgs e)
@@ -98,6 +126,16 @@ namespace CSVXML_TemplateEditor
         private void SaveFileMouseLeave(object sender, MouseEventArgs e)
         {
             SaveFileButton.Background = new SolidColorBrush(Color.FromRgb(15, 17, 26));
+        }
+
+        private void SaveAsFileMouseEnter(object sender, MouseEventArgs e)
+        {
+            SaveAsFileButton.Background = new SolidColorBrush(Color.FromRgb(30, 34, 52));
+        }
+
+        private void SaveAsFileMouseLeave(object sender, MouseEventArgs e)
+        {
+            SaveAsFileButton.Background = new SolidColorBrush(Color.FromRgb(15, 17, 26));
         }
     }
 }
