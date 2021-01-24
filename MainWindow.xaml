@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSVXML_TemplateEditor"
         mc:Ignorable="d"
-        Title="CSVXML" Height="500" Width="600" WindowStartupLocation="CenterScreen">
+        Title="CSVXML" Height="500" Width="600" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" WindowState="Maximized">
     <Window.Background>
         <ImageBrush ImageSource="images/qwe.jpg" x:Name="IB" Stretch="UniformToFill"/>
     </Window.Background>
@@ -17,22 +17,9 @@
             </Border.Effect>
             <StackPanel>
                 <TextBlock x:Name="ProgramName" Text="CSVXML-TemplateEditor" HorizontalAlignment="Center" Margin="0 0 0 10" FontSize="36" FontWeight="Bold"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Border x:Name="Button_1" Grid.Column="0" Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseEnter="Border_MouseEnter" MouseLeave="Button_1_MouseLeave" MouseDown="XMLFormCreate">
-                        <TextBlock Text="XML" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" IsEnabled="False"></TextBlock>
-                    </Border>
-                    <Border x:Name="Button_2" Grid.Column="1" Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
-                        <TextBlock Text="CSV" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" IsEnabled="False"></TextBlock>
-                    </Border>
-                    <Border x:Name="Button_3" Grid.Column="2" Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
-                        <TextBlock Text="TXT" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" IsEnabled="False"></TextBlock>
-                    </Border>
-                </Grid>
+                <Border x:Name="Button_1" Width="200" Grid.Column="0" Height="25" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseEnter="Border_MouseEnter" MouseLeave="Button_1_MouseLeave" MouseDown="XMLFormCreate">
+                    <TextBlock Text="Start" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                </Border>
             </StackPanel>
         </Border>
     </Grid>

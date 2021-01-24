@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CSVXML_TemplateEditor
 {
@@ -29,7 +18,7 @@ namespace CSVXML_TemplateEditor
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {
-            Button_1.Background = new SolidColorBrush(Color.FromRgb(30, 34, 52));
+            Button_1.Background = new SolidColorBrush(Color.FromRgb(38, 50, 56));
         }
 
         private void Button_1_MouseLeave(object sender, MouseEventArgs e)
@@ -41,6 +30,7 @@ namespace CSVXML_TemplateEditor
         {
             FormXML xml = new FormXML();
             xml.Show();
+            this.Close();
         }
     }
 }

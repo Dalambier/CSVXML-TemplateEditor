@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>images\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -57,7 +60,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FormNewFile.xaml.cs">
+      <DependentUpon>FormNewFile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SomeFunctions.cs" />
+    <Page Include="FormNewFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FormXML.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,6 +116,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\qwe.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

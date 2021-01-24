@@ -13,6 +13,8 @@ namespace CSVXML_TemplateEditor
         public FormXML()
         {
             InitializeComponent();
+            MinWidth = 430;
+            MinHeight = 150;
         }
 
         public string PatchOpenFile; //Сохранение пути открываемого файла
@@ -38,7 +40,6 @@ namespace CSVXML_TemplateEditor
                 {
                     SomeFunctions smf = new SomeFunctions();
                     smf.CSV_XML(PatchOpenFile, "tempfile.xml", "users", "user");
-
                     DataSet dataset = new DataSet();
                     dataset.ReadXml("tempfile.xml");
                     XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
@@ -107,10 +108,15 @@ namespace CSVXML_TemplateEditor
             }
         }
 
+        private void NewFileMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FormNewFile newfile = new FormNewFile();
+            newfile.Show();
+        }
 
         private void LoadFileMouseEnter(object sender, MouseEventArgs e)
         {
-            LoadFileButton.Background = new SolidColorBrush(Color.FromRgb(30, 34, 52));
+            LoadFileButton.Background = new SolidColorBrush(Color.FromRgb(38, 50, 56));
         }
 
         private void LoadFileMouseLeave(object sender, MouseEventArgs e)
@@ -120,7 +126,7 @@ namespace CSVXML_TemplateEditor
 
         private void SaveFileMouseEnter(object sender, MouseEventArgs e)
         {
-            SaveFileButton.Background = new SolidColorBrush(Color.FromRgb(30, 34, 52));
+            SaveFileButton.Background = new SolidColorBrush(Color.FromRgb(38, 50, 56));
         }
 
         private void SaveFileMouseLeave(object sender, MouseEventArgs e)
@@ -130,12 +136,22 @@ namespace CSVXML_TemplateEditor
 
         private void SaveAsFileMouseEnter(object sender, MouseEventArgs e)
         {
-            SaveAsFileButton.Background = new SolidColorBrush(Color.FromRgb(30, 34, 52));
+            SaveAsFileButton.Background = new SolidColorBrush(Color.FromRgb(38, 50, 56));
         }
 
         private void SaveAsFileMouseLeave(object sender, MouseEventArgs e)
         {
             SaveAsFileButton.Background = new SolidColorBrush(Color.FromRgb(15, 17, 26));
+        }
+
+        private void NewFileMouseEnter(object sender, MouseEventArgs e)
+        {
+            NewFileButton.Background = new SolidColorBrush(Color.FromRgb(38, 50, 56));
+        }
+
+        private void NewFileMouseLeave(object sender, MouseEventArgs e)
+        {
+            NewFileButton.Background = new SolidColorBrush(Color.FromRgb(15, 17, 26));
         }
     }
 }
