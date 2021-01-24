@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:CSVXML_TemplateEditor"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>

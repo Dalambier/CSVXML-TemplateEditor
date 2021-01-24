@@ -23,6 +23,24 @@ namespace CSVXML_TemplateEditor
         public MainWindow()
         {
             InitializeComponent();
+            MinWidth = 500;
+            MinHeight = 250;
+        }
+
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Button_1.Background = new SolidColorBrush(Color.FromRgb(30, 34, 52));
+        }
+
+        private void Button_1_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button_1.Background = new SolidColorBrush(Color.FromRgb(15, 17, 26));
+        }
+
+        private void XMLFormCreate(object sender, MouseButtonEventArgs e)
+        {
+            FormXML xml = new FormXML();
+            xml.Show();
         }
     }
 }
