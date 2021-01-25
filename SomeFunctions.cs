@@ -26,6 +26,7 @@ namespace CSVXML_TemplateEditor
             {
                 Clipboard.Clear();
                 Clipboard.SetText(ClipBoardTextDefault);
+                ClipBoardTextisClear = true;
             }
         }
         public void CSV_XML(string patch, string XMLFileName, string MainElement, string SecondaryElement, char Delimiter = ';')
