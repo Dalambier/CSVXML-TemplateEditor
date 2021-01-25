@@ -31,19 +31,33 @@ namespace CSVXML_TemplateEditor
                 ExtensionOpenFile = myDialog.FileName.Substring(myDialog.FileName.LastIndexOf('.'));
                 if (ExtensionOpenFile == ".xml")
                 {
-                    myDialog.FileName = myDialog.FileName;
-                    DataSet dataset = new DataSet();
-                    dataset.ReadXml(myDialog.FileName);
-                    XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
+                    try
+                    {
+                        myDialog.FileName = myDialog.FileName;
+                        DataSet dataset = new DataSet();
+                        dataset.ReadXml(myDialog.FileName);
+                        XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Incorrerct File!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else if (ExtensionOpenFile == ".csv")
                 {
-                    SomeFunctions smf = new SomeFunctions();
-                    smf.CSV_XML(PatchOpenFile, "tempfile.xml", "users", "user");
-                    DataSet dataset = new DataSet();
-                    dataset.ReadXml("tempfile.xml");
-                    XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
-                    File.Delete("tempfile.xml");
+                    try
+                    {
+                        SomeFunctions smf = new SomeFunctions();
+                        smf.CSV_XML(PatchOpenFile, "tempfile.xml", "users", "user");
+                        DataSet dataset = new DataSet();
+                        dataset.ReadXml("tempfile.xml");
+                        XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
+                        File.Delete("tempfile.xml");
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
         }

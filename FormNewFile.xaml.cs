@@ -27,7 +27,13 @@ namespace CSVXML_TemplateEditor
         }
 
         private void CompleteMouseDown(object sender, MouseButtonEventArgs e)
-        {
+        { 
+            if(ColumnValue < 3)
+            {
+                MessageBox.Show("Minimum columns = 2", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
             SomeFunctions smf = new SomeFunctions();
             NewTableString = NewTableString.Remove(NewTableString.Length - 1);
             string RowTable = ";";
@@ -35,35 +41,36 @@ namespace CSVXML_TemplateEditor
 
             SaveFileDialog myDialog = new SaveFileDialog();
             myDialog.Filter = "XML-Document (*.xml)|*.xml|CSV-Document (*.csv)|*.csv";
-            if (myDialog.ShowDialog() == true)
-            {
-                smf.CheckClipBoard();
-                string ExtensionOpenFile = myDialog.FileName.Substring(myDialog.FileName.LastIndexOf('.'));
-                if (ExtensionOpenFile == ".xml")
+                if (myDialog.ShowDialog() == true)
                 {
-                    for (int i = 0; i < ColumnValue - 3; i++)
+                    smf.CheckClipBoard();
+                    string ExtensionOpenFile = myDialog.FileName.Substring(myDialog.FileName.LastIndexOf('.'));
+                    if (ExtensionOpenFile == ".xml")
                     {
-                        RowTable += ";";
+                        for (int i = 0; i < ColumnValue - 3; i++)
+                        {
+                            RowTable += ";";
+                        }
+                        StreamWriter file = new StreamWriter("tempfile.csv", true, Encoding.UTF8);
+                        file.WriteLine(NewTableString);
+                        file.WriteLine(RowTable);
+                        file.Close();
+                        smf.CSV_XML("tempfile.csv", myDialog.FileName, "users", "user");
+                        File.Delete("tempfile.csv");
                     }
-                    StreamWriter file = new StreamWriter("tempfile.csv", true, Encoding.UTF8);
-                    file.WriteLine(NewTableString);
-                    file.WriteLine(RowTable);
-                    file.Close();
-                    smf.CSV_XML("tempfile.csv", myDialog.FileName, "users", "user");
-                    File.Delete("tempfile.csv");
-                }
-                else if (ExtensionOpenFile == ".csv")
-                {
-                    for (int i = 0; i < ColumnValue - 3; i++)
+                    else if (ExtensionOpenFile == ".csv")
                     {
-                        RowTable += ";";
+                        for (int i = 0; i < ColumnValue - 3; i++)
+                        {
+                            RowTable += ";";
+                        }
+                        StreamWriter file = new StreamWriter(myDialog.FileName, true, Encoding.UTF8);
+                        file.WriteLine(NewTableString);
+                        file.WriteLine(RowTable);
+                        file.Close();
                     }
-                    StreamWriter file = new StreamWriter(myDialog.FileName, true, Encoding.UTF8);
-                    file.WriteLine(NewTableString);
-                    file.WriteLine(RowTable);
-                    file.Close();
+                    this.Close();
                 }
-                this.Close();
             }
         }
 

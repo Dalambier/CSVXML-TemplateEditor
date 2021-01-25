@@ -31,28 +31,36 @@ namespace CSVXML_TemplateEditor
         }
         public void CSV_XML(string patch, string XMLFileName, string MainElement, string SecondaryElement, char Delimiter = ';')
         {
-            var CsvText = File.ReadAllLines(patch, Encoding.GetEncoding(1251)).Select(line => line.Split(Delimiter).ToArray()).ToArray();
-            int delimiter_i = 0, csv_columns = 1, csv_rows = CsvText.GetUpperBound(0) + 1;//Переменные для поиска столбцов + расчёт строк
-            string delimiter_p = Delimiter.ToString(), column_checker = File.ReadLines(patch).Skip(1).First(); //Переменные для поиска столбцов
-            while ((delimiter_i = column_checker.IndexOf(delimiter_p, delimiter_i)) != -1) { ++csv_columns; delimiter_i += delimiter_p.Length; }
-            XmlWriterSettings XmlSettings = new XmlWriterSettings();
-            XmlSettings.Indent = true;
-            XmlWriter xmlWriter = XmlWriter.Create(XMLFileName, XmlSettings);
-            xmlWriter.WriteStartDocument();
-            xmlWriter.WriteStartElement(MainElement);
-            for (int i = 1; i < csv_rows; i++)
+            try
             {
-                xmlWriter.WriteStartElement(SecondaryElement);
-                for (int ii = 0; ii < csv_columns; ii++)
+
+                var CsvText = File.ReadAllLines(patch, Encoding.GetEncoding(1251)).Select(line => line.Split(Delimiter).ToArray()).ToArray();
+                int delimiter_i = 0, csv_columns = 1, csv_rows = CsvText.GetUpperBound(0) + 1;//Переменные для поиска столбцов + расчёт строк
+                string delimiter_p = Delimiter.ToString(), column_checker = File.ReadLines(patch).Skip(1).First(); //Переменные для поиска столбцов
+                while ((delimiter_i = column_checker.IndexOf(delimiter_p, delimiter_i)) != -1) { ++csv_columns; delimiter_i += delimiter_p.Length; }
+                XmlWriterSettings XmlSettings = new XmlWriterSettings();
+                XmlSettings.Indent = true;
+                XmlWriter xmlWriter = XmlWriter.Create(XMLFileName, XmlSettings);
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement(MainElement);
+                for (int i = 1; i < csv_rows; i++)
                 {
-                    xmlWriter.WriteStartElement(CsvText[0][ii]);
-                    xmlWriter.WriteString(CsvText[i][ii]);
+                    xmlWriter.WriteStartElement(SecondaryElement);
+                    for (int ii = 0; ii < csv_columns; ii++)
+                    {
+                        xmlWriter.WriteStartElement(CsvText[0][ii]);
+                        xmlWriter.WriteString(CsvText[i][ii]);
+                        xmlWriter.WriteEndElement();
+                    }
                     xmlWriter.WriteEndElement();
                 }
                 xmlWriter.WriteEndElement();
+                xmlWriter.Close();
             }
-            xmlWriter.WriteEndElement();
-            xmlWriter.Close();
+            catch
+            {
+                MessageBox.Show("Incorrerct File!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         public void TableToCSV(string patch, string Delimiter = ";")
         {
