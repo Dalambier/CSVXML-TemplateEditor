@@ -20,12 +20,14 @@
                     <MenuItem Header="Exit" Click="ExitProrgam"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Edit">
-                    <MenuItem Header="base64">
-                        <MenuItem Header="Coding"></MenuItem>
-                        <MenuItem Header="Encoding"></MenuItem>
+                    <MenuItem Header="Encryption">
+                        <MenuItem Header="base64">
+                            <MenuItem Header="Coding"></MenuItem>
+                            <MenuItem Header="Encoding"></MenuItem>
+                        </MenuItem>
                     </MenuItem>
-                    <Separator />
                     <MenuItem Header="Add column"></MenuItem>
+                    <Separator />
                     <MenuItem Header="Settings"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Help" >
@@ -36,7 +38,7 @@
             </Menu>
             <DataGrid x:Name="XMLTable" CanUserDeleteRows="True" CanUserResizeRows="False"
                       CanUserSortColumns="True" AutoGenerateColumns="True" CanUserReorderColumns="True"
-                      Background="Snow" FontSize="13" FontWeight="Bold"></DataGrid>
+                      Background="Snow" FontSize="13" FontWeight="Bold" AlternatingRowBackground="#FFEAEAEA" AlternationCount="1" HorizontalGridLinesBrush="#FF4F4F4F" VerticalGridLinesBrush="#FF4F4F4F"/>
         </StackPanel>
     </Grid>
 </Window>

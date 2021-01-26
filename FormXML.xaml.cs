@@ -26,7 +26,7 @@ namespace CSVXML_TemplateEditor
         private void NewFile(object sender, RoutedEventArgs e)
         {
             FormNewFile newfile = new FormNewFile();
-            newfile.Show();
+            newfile.ShowDialog();
         }
 
         private void OpenFile(object sender, RoutedEventArgs e)
