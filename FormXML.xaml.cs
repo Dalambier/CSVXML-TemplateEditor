@@ -1,10 +1,13 @@
 ﻿using Microsoft.Win32;
+using System;
 using System.Data;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
+using System.Xml.Linq;
 
 namespace CSVXML_TemplateEditor
 {
@@ -13,14 +16,20 @@ namespace CSVXML_TemplateEditor
         public FormXML()
         {
             InitializeComponent();
-            MinWidth = 430;
+            MinWidth = 300;
             MinHeight = 150;
         }
 
         public string PatchOpenFile; //Сохранение пути открываемого файла
         public string ExtensionOpenFile; //Сохранение расширения файла
 
-        private void LoadFileMouseDown(object sender, MouseButtonEventArgs e)
+        private void NewFile(object sender, RoutedEventArgs e)
+        {
+            FormNewFile newfile = new FormNewFile();
+            newfile.Show();
+        }
+
+        private void OpenFile(object sender, RoutedEventArgs e)
         {
             OpenFileDialog myDialog = new OpenFileDialog();
             myDialog.Filter = "Documents(*.xml;*.csv)|*.XML;*.csv";
@@ -33,7 +42,6 @@ namespace CSVXML_TemplateEditor
                 {
                     try
                     {
-                        myDialog.FileName = myDialog.FileName;
                         DataSet dataset = new DataSet();
                         dataset.ReadXml(myDialog.FileName);
                         XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
@@ -62,11 +70,10 @@ namespace CSVXML_TemplateEditor
             }
         }
 
-        private void SaveFileMouseDown(object sender, MouseButtonEventArgs e)
+        private void SaveFile(object sender, RoutedEventArgs e)
         {
             SomeFunctions smf = new SomeFunctions();
             smf.CheckClipBoard();
-
             if (ExtensionOpenFile == ".xml")
             {
                 File.Delete(PatchOpenFile);
@@ -90,7 +97,7 @@ namespace CSVXML_TemplateEditor
             smf.PasteToClipBoard();
         }
 
-        private void SaveAsFileMouseDown(object sender, MouseButtonEventArgs e)
+        private void SaveAsFile(object sender, RoutedEventArgs e)
         {
             SaveFileDialog myDialog = new SaveFileDialog();
             myDialog.Filter = "XML-Document (*.xml)|*.xml|CSV-Document (*.csv)|*.csv";
@@ -122,50 +129,47 @@ namespace CSVXML_TemplateEditor
             }
         }
 
-        private void NewFileMouseDown(object sender, MouseButtonEventArgs e)
+        private void ConvertFile(object sender, RoutedEventArgs e)
         {
-            FormNewFile newfile = new FormNewFile();
-            newfile.Show();
+            OpenFileDialog myDialog = new OpenFileDialog();
+            myDialog.Filter = "Documents(*.xml;*.csv)|*.XML;*.csv";
+
+            if (myDialog.ShowDialog() == true)
+            {
+                SomeFunctions smf = new SomeFunctions();
+                PatchOpenFile = myDialog.FileName;
+                ExtensionOpenFile = myDialog.FileName.Substring(myDialog.FileName.LastIndexOf('.'));
+                if (ExtensionOpenFile == ".xml")
+                {
+                    string PatchFileNotExtension = myDialog.FileName.Split('.')[0];
+                    XElement DataElement = XElement.Parse(File.ReadAllText(myDialog.FileName));
+                    var csvData = SomeFunctions.CSV_XML(DataElement);
+                    File.WriteAllText(PatchFileNotExtension + "(csv).csv", (string)csvData);
+
+                }
+                else if (ExtensionOpenFile == ".csv")
+                {
+                    try
+                    {
+                        string PatchFileNotExtension = myDialog.FileName.Split('.')[0];
+                        smf.CSV_XML(PatchOpenFile, PatchFileNotExtension + "(xml).xml", "users", "user");
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
         }
 
-        private void LoadFileMouseEnter(object sender, MouseEventArgs e)
+        private void ExitProrgam(object sender, RoutedEventArgs e)
         {
-            LoadFileButton.Background = new SolidColorBrush(Color.FromRgb(38, 50, 56));
+            Application.Current.Shutdown();
         }
 
-        private void LoadFileMouseLeave(object sender, MouseEventArgs e)
+        private void GitHubPage(object sender, RoutedEventArgs e)
         {
-            LoadFileButton.Background = new SolidColorBrush(Color.FromRgb(15, 17, 26));
-        }
-
-        private void SaveFileMouseEnter(object sender, MouseEventArgs e)
-        {
-            SaveFileButton.Background = new SolidColorBrush(Color.FromRgb(38, 50, 56));
-        }
-
-        private void SaveFileMouseLeave(object sender, MouseEventArgs e)
-        {
-            SaveFileButton.Background = new SolidColorBrush(Color.FromRgb(15, 17, 26));
-        }
-
-        private void SaveAsFileMouseEnter(object sender, MouseEventArgs e)
-        {
-            SaveAsFileButton.Background = new SolidColorBrush(Color.FromRgb(38, 50, 56));
-        }
-
-        private void SaveAsFileMouseLeave(object sender, MouseEventArgs e)
-        {
-            SaveAsFileButton.Background = new SolidColorBrush(Color.FromRgb(15, 17, 26));
-        }
-
-        private void NewFileMouseEnter(object sender, MouseEventArgs e)
-        {
-            NewFileButton.Background = new SolidColorBrush(Color.FromRgb(38, 50, 56));
-        }
-
-        private void NewFileMouseLeave(object sender, MouseEventArgs e)
-        {
-            NewFileButton.Background = new SolidColorBrush(Color.FromRgb(15, 17, 26));
+            System.Diagnostics.Process.Start("https://github.com/Dalambier/CSVXML-TemplateEditor");
         }
     }
 }

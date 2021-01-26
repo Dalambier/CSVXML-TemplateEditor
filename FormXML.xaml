@@ -5,39 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSVXML_TemplateEditor"
         mc:Ignorable="d"
-        Title="CSVXML" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="images/Icon.png">
-
+        Title="CSVXML" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" AllowDrop="True">
+    
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="75"></ColumnDefinition>
-            <ColumnDefinition Width="80"></ColumnDefinition>
-            <ColumnDefinition Width="80"></ColumnDefinition>
-            <ColumnDefinition Width="90"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="90"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <DataGrid x:Name="XMLTable" Grid.Row="0" Grid.ColumnSpan="6" AutoGenerateColumns="True" Background="Snow"></DataGrid>
-
-        <Border Grid.Row="1" Grid.ColumnSpan="6" Background="Snow"></Border>
-
-        <Border x:Name="NewFileButton" Grid.Row="1" Grid.Column="0" Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand"  MouseDown="NewFileMouseDown" MouseEnter="NewFileMouseEnter" MouseLeave="NewFileMouseLeave">
-            <TextBlock Text="New" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" IsEnabled="False"></TextBlock>
-        </Border>
-        <Border x:Name="LoadFileButton" Grid.Row="1" Grid.Column="1" Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseEnter="LoadFileMouseEnter" MouseLeave="LoadFileMouseLeave" MouseDown="LoadFileMouseDown">
-            <TextBlock Text="Load" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" IsEnabled="False"></TextBlock>
-        </Border>
-        <Border x:Name="SaveFileButton" Grid.Row="1" Grid.Column="2" Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseEnter="SaveFileMouseEnter" MouseLeave="SaveFileMouseLeave" MouseDown="SaveFileMouseDown">
-            <TextBlock Text="Save" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" IsEnabled="False"></TextBlock>
-        </Border>
-        <Border x:Name="SaveAsFileButton" Grid.Row="1" Grid.Column="3" Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseEnter="SaveAsFileMouseEnter" MouseLeave="SaveAsFileMouseLeave" MouseDown="SaveAsFileMouseDown">
-            <TextBlock x:Name="SaveAs" Text="Save as" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" IsEnabled="False"></TextBlock>
-        </Border>
-        <Border x:Name="SettingsButton" Grid.Row="1" Grid.Column="6" Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
-            <TextBlock Text="Settings" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" IsEnabled="False"></TextBlock>
-        </Border>
+        <StackPanel>
+            <Menu VerticalAlignment="Top" FontSize="13" FontWeight="Bold">
+                <MenuItem Header="File">
+                    <MenuItem Header="New" Click="NewFile"></MenuItem>
+                    <MenuItem Header="Open" Click="OpenFile"></MenuItem>
+                    <MenuItem Header="Save" Click="SaveFile"></MenuItem>
+                    <MenuItem Header="Save as" Click="SaveAsFile"></MenuItem>
+                    <MenuItem Header="Convert" Click="ConvertFile"></MenuItem>
+                    <Separator />
+                    <MenuItem Header="Exit" Click="ExitProrgam"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Edit">
+                    <MenuItem Header="base64">
+                        <MenuItem Header="Coding"></MenuItem>
+                        <MenuItem Header="Encoding"></MenuItem>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="Add column"></MenuItem>
+                    <MenuItem Header="Settings"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Help" >
+                    <MenuItem Header="Github Page" Click="GitHubPage"></MenuItem>
+                    <MenuItem Header="Author/About program"></MenuItem>
+                    <MenuItem Header="Documentation"></MenuItem>
+                </MenuItem>
+            </Menu>
+            <DataGrid x:Name="XMLTable" CanUserDeleteRows="True" CanUserResizeRows="False"
+                      CanUserSortColumns="True" AutoGenerateColumns="True" CanUserReorderColumns="True"
+                      Background="Snow" FontSize="13" FontWeight="Bold"></DataGrid>
+        </StackPanel>
     </Grid>
 </Window>

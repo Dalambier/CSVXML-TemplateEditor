@@ -5,22 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSVXML_TemplateEditor"
         mc:Ignorable="d"
-        Title="CSVXML" Height="500" Width="600" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" WindowState="Maximized">
+        Title="CSVXML" Height="400" Width="900" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" Visibility="Visible" Topmost="True" Cursor="Wait" Loaded="Window_Loaded">
     <Window.Background>
         <ImageBrush ImageSource="images/qwe.jpg" x:Name="IB" Stretch="UniformToFill"/>
     </Window.Background>
     <Grid>
-        <TextBlock Text="Developer: Dalambier.12@gmail.com" VerticalAlignment="Bottom" HorizontalAlignment="Center"  FontSize="17" FontWeight="Bold" Margin="0 0 0 13" Foreground="White"></TextBlock>
-        <Border Margin="20" Background="Snow" VerticalAlignment="Center" Padding="15" MinWidth="442" MaxWidth="880" CornerRadius="20">
+        <Border Margin="0 200 0 0" Background="Snow" VerticalAlignment="Center" Padding="10" MinWidth="442" MaxWidth="880" CornerRadius="20">
             <Border.Effect>
                 <DropShadowEffect></DropShadowEffect>
             </Border.Effect>
-            <StackPanel>
-                <TextBlock x:Name="ProgramName" Text="CSVXML-TemplateEditor" HorizontalAlignment="Center" Margin="0 0 0 10" FontSize="36" FontWeight="Bold"/>
-                <Border x:Name="Button_1" Width="200" Grid.Column="0" Height="25" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseEnter="Border_MouseEnter" MouseLeave="Button_1_MouseLeave" MouseDown="XMLFormCreate">
-                    <TextBlock Text="Start" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold" IsEnabled="False"></TextBlock>
-                </Border>
-            </StackPanel>
+            <TextBlock x:Name="ProgramName" Text="CSVXML-TemplateEditor" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"/>
         </Border>
     </Grid>
 </Window>

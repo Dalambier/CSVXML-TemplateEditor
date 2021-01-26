@@ -1,9 +1,11 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace CSVXML_TemplateEditor
 {
@@ -33,7 +35,6 @@ namespace CSVXML_TemplateEditor
         {
             try
             {
-
                 var CsvText = File.ReadAllLines(patch, Encoding.GetEncoding(1251)).Select(line => line.Split(Delimiter).ToArray()).ToArray();
                 int delimiter_i = 0, csv_columns = 1, csv_rows = CsvText.GetUpperBound(0) + 1;//Переменные для поиска столбцов + расчёт строк
                 string delimiter_p = Delimiter.ToString(), column_checker = File.ReadLines(patch).Skip(1).First(); //Переменные для поиска столбцов
@@ -74,6 +75,15 @@ namespace CSVXML_TemplateEditor
                 text = text.Replace(",", Delimiter);
                 File.WriteAllText(patch, text, UnicodeEncoding.UTF8);
             }
+        }
+        public static object CSV_XML(XElement DataElement)
+        {
+            StringBuilder sb = new StringBuilder();
+            var lines = from d in DataElement.Elements()
+                        let line = string.Join(";", d.Elements().Select(s => s.Value))
+                        select line;
+            sb.Append(string.Join(Environment.NewLine, lines));
+            return sb.ToString();
         }
     }
 }
