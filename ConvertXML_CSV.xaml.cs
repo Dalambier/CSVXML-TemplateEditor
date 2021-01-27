@@ -14,11 +14,6 @@ namespace CSVXML_TemplateEditor
             row.Text = File.ReadLines(FormXML.XmlCsvPatch).Skip(1).First();
         }
 
-        private void CompleteButton_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-
-        }
-
         private void EnterButton(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if(TextFieldColumns.Text == "")

@@ -11,8 +11,8 @@ namespace CSVXML_TemplateEditor
 {
     public class SomeFunctions
     {
-        public bool ClipBoardTextisClear = true;
-        public string ClipBoardTextDefault;
+        private bool ClipBoardTextisClear = true;
+        private string ClipBoardTextDefault;
 
         public void CheckClipBoard()
         {
@@ -76,7 +76,7 @@ namespace CSVXML_TemplateEditor
                 File.WriteAllText(patch, text, UnicodeEncoding.UTF8);
             }
         }
-        public static object CSV_XML(XElement DataElement, string delimiter)
+        public static object XML_CSV(XElement DataElement, string delimiter)
         {
             StringBuilder sb = new StringBuilder();
             var lines = from d in DataElement.Elements()

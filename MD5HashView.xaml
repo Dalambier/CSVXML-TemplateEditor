@@ -1,0 +1,30 @@
+﻿<Window x:Class="CSVXML_TemplateEditor.MD5HashView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSVXML_TemplateEditor"
+        mc:Ignorable="d"
+        Title="MD5HashView" Height="220" Width="594" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="images/qwe.jpg" x:Name="IB" Stretch="UniformToFill"/>
+    </Window.Background>
+    <Grid>
+        <Border Margin="20" Background="Snow" VerticalAlignment="Center" Padding="15" CornerRadius="10">
+            <Border.Effect>
+                <DropShadowEffect></DropShadowEffect>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="MD5 File Hash" HorizontalAlignment="Center" Margin="0 0 0 10" FontSize="30" FontWeight="Bold"/>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
+                    <TextBox x:Name="MD5FileHashText" IsReadOnly="True" FontSize="15"  FontWeight="Bold" Background="White" Margin="0 0 0 10"></TextBox>
+                    <TextBox x:Name="MD5FileHashTextCheck" MinWidth="100" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="Bold" Grid.Row="1" Grid.Column="0" Background="White" TextChanged="MD5FileHashTextCheck_TextChanged"></TextBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

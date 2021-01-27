@@ -19,10 +19,11 @@
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Encryption">
-                    <MenuItem Header="base64">
+                    <MenuItem Header="Base64">
                         <MenuItem Header="Coding"></MenuItem>
                         <MenuItem Header="Encoding"></MenuItem>
                     </MenuItem>
+                    <MenuItem Header="MD5 Hash File" Click="MD5HashFile"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Add column"></MenuItem>
                 <Separator />
