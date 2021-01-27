@@ -60,10 +60,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConvertXML_CSV.xaml.cs">
+      <DependentUpon>ConvertXML_CSV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FormNewFile.xaml.cs">
       <DependentUpon>FormNewFile.xaml</DependentUpon>
     </Compile>
     <Compile Include="SomeFunctions.cs" />
+    <Page Include="ConvertXML_CSV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FormNewFile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

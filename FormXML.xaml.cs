@@ -2,7 +2,6 @@
 using System;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,11 +21,50 @@ namespace CSVXML_TemplateEditor
 
         public string PatchOpenFile; //Сохранение пути открываемого файла
         public string ExtensionOpenFile; //Сохранение расширения файла
+        public static string NewFilePatch;
+        public static string XmlCsvPatch;
+        public static object CSVFileData;
 
         private void NewFile(object sender, RoutedEventArgs e)
         {
             FormNewFile newfile = new FormNewFile();
             newfile.ShowDialog();
+            if (NewFilePatch != null)
+            {
+                PatchOpenFile = NewFilePatch;
+                NewFilePatch = null;
+                ExtensionOpenFile = PatchOpenFile.Substring(PatchOpenFile.LastIndexOf('.'));
+                if (ExtensionOpenFile == ".xml")
+                {
+                    try
+                    {
+                        DataSet dataset = new DataSet();
+                        dataset.ReadXml(PatchOpenFile);
+                        XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Incorrerct File!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else if (ExtensionOpenFile == ".csv")
+                {
+                    try
+                    {
+                        SomeFunctions smf = new SomeFunctions();
+                        smf.CSV_XML(PatchOpenFile, "tempfile.xml", "users", "user");
+                        DataSet dataset = new DataSet();
+                        dataset.ReadXml("tempfile.xml");
+                        XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
+                        File.Delete("tempfile.xml");
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
+            
         }
 
         private void OpenFile(object sender, RoutedEventArgs e)
@@ -143,9 +181,13 @@ namespace CSVXML_TemplateEditor
                 {
                     string PatchFileNotExtension = myDialog.FileName.Split('.')[0];
                     XElement DataElement = XElement.Parse(File.ReadAllText(myDialog.FileName));
-                    var csvData = SomeFunctions.CSV_XML(DataElement);
-                    File.WriteAllText(PatchFileNotExtension + "(csv).csv", (string)csvData);
-
+                    var csvData = SomeFunctions.CSV_XML(DataElement, ";");
+                    XmlCsvPatch = PatchFileNotExtension + "(csv).csv";
+                    File.WriteAllText(XmlCsvPatch, "ThisTextWillThenBeColumns\n", Encoding.UTF8);
+                    File.AppendAllText(XmlCsvPatch, (string)csvData, Encoding.UTF8);
+                    CSVFileData = csvData;
+                    ConvertXML_CSV xmlcsv = new ConvertXML_CSV();
+                    xmlcsv.ShowDialog();
                 }
                 else if (ExtensionOpenFile == ".csv")
                 {
@@ -170,6 +212,11 @@ namespace CSVXML_TemplateEditor
         private void GitHubPage(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/Dalambier/CSVXML-TemplateEditor");
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

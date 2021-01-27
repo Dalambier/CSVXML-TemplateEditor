@@ -5,40 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSVXML_TemplateEditor"
         mc:Ignorable="d"
-        Title="CSVXML" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" AllowDrop="True">
-    
+        Title="CSVXML" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" AllowDrop="True" Closed="Window_Closed">
     <Grid>
-        <StackPanel>
-            <Menu VerticalAlignment="Top" FontSize="13" FontWeight="Bold">
-                <MenuItem Header="File">
-                    <MenuItem Header="New" Click="NewFile"></MenuItem>
-                    <MenuItem Header="Open" Click="OpenFile"></MenuItem>
-                    <MenuItem Header="Save" Click="SaveFile"></MenuItem>
-                    <MenuItem Header="Save as" Click="SaveAsFile"></MenuItem>
-                    <MenuItem Header="Convert" Click="ConvertFile"></MenuItem>
-                    <Separator />
-                    <MenuItem Header="Exit" Click="ExitProrgam"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Edit">
-                    <MenuItem Header="Encryption">
-                        <MenuItem Header="base64">
-                            <MenuItem Header="Coding"></MenuItem>
-                            <MenuItem Header="Encoding"></MenuItem>
-                        </MenuItem>
+        <Menu VerticalAlignment="Top" FontSize="13" FontWeight="Bold">
+            <MenuItem Header="File">
+                <MenuItem Header="New" Click="NewFile"></MenuItem>
+                <MenuItem Header="Open" Click="OpenFile"></MenuItem>
+                <MenuItem Header="Save" Click="SaveFile"></MenuItem>
+                <MenuItem Header="Save as" Click="SaveAsFile"></MenuItem>
+                <MenuItem Header="Convert" Click="ConvertFile"></MenuItem>
+                <Separator />
+                <MenuItem Header="Exit" Click="ExitProrgam"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Encryption">
+                    <MenuItem Header="base64">
+                        <MenuItem Header="Coding"></MenuItem>
+                        <MenuItem Header="Encoding"></MenuItem>
                     </MenuItem>
-                    <MenuItem Header="Add column"></MenuItem>
-                    <Separator />
-                    <MenuItem Header="Settings"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Help" >
-                    <MenuItem Header="Github Page" Click="GitHubPage"></MenuItem>
-                    <MenuItem Header="Author/About program"></MenuItem>
-                    <MenuItem Header="Documentation"></MenuItem>
-                </MenuItem>
-            </Menu>
-            <DataGrid x:Name="XMLTable" CanUserDeleteRows="True" CanUserResizeRows="False"
+                <MenuItem Header="Add column"></MenuItem>
+                <Separator />
+                <MenuItem Header="Settings"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help" >
+                <MenuItem Header="Github Page" Click="GitHubPage"></MenuItem>
+                <MenuItem Header="Author/About program"></MenuItem>
+                <MenuItem Header="Documentation"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <DataGrid x:Name="XMLTable" CanUserDeleteRows="True" CanUserResizeRows="False"
                       CanUserSortColumns="True" AutoGenerateColumns="True" CanUserReorderColumns="True"
-                      Background="Snow" FontSize="13" FontWeight="Bold" AlternatingRowBackground="#FFEAEAEA" AlternationCount="1" HorizontalGridLinesBrush="#FF4F4F4F" VerticalGridLinesBrush="#FF4F4F4F"/>
-        </StackPanel>
+                      Background="Snow" FontSize="13" FontWeight="Bold" AlternatingRowBackground="#FFEAEAEA"
+                      AlternationCount="1" HorizontalGridLinesBrush="#FF4F4F4F" Margin="0 20 0 0" VerticalGridLinesBrush="#FF4F4F4F">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить столбец"/>
+                    <MenuItem Header="Добавить строку"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
     </Grid>
 </Window>

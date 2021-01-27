@@ -76,11 +76,11 @@ namespace CSVXML_TemplateEditor
                 File.WriteAllText(patch, text, UnicodeEncoding.UTF8);
             }
         }
-        public static object CSV_XML(XElement DataElement)
+        public static object CSV_XML(XElement DataElement, string delimiter)
         {
             StringBuilder sb = new StringBuilder();
             var lines = from d in DataElement.Elements()
-                        let line = string.Join(";", d.Elements().Select(s => s.Value))
+                        let line = string.Join(delimiter, d.Elements().Select(s => s.Value))
                         select line;
             sb.Append(string.Join(Environment.NewLine, lines));
             return sb.ToString();
