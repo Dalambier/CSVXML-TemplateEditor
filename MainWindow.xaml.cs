@@ -24,6 +24,9 @@ namespace CSVXML_TemplateEditor
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            LanguageSettings lng = new LanguageSettings();
+            lng.SettingsIsNullIsNull();
+            lng.LanguageChecked();
             timer.Interval = TimeSpan.FromSeconds(3);
             timer.Tick += timerTick;
             timer.Start();

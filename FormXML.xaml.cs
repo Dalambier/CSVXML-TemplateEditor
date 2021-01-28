@@ -270,5 +270,11 @@ namespace CSVXML_TemplateEditor
                 }
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LanguageSettings lng = new LanguageSettings();
+            Menu_File.Header = LanguageSettings.Menu_File;
+        }
     }
 }

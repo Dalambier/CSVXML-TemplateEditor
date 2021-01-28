@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSVXML_TemplateEditor"
         mc:Ignorable="d"
-        Title="CSVXML" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" AllowDrop="True" Closed="Window_Closed">
+        Title="CSVXML" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" AllowDrop="True" Closed="Window_Closed" Loaded="Window_Loaded">
     <Grid>
         <Menu VerticalAlignment="Top" FontSize="13" FontWeight="Bold">
-            <MenuItem Header="File">
+            <MenuItem x:Name="Menu_File" Header="File">
                 <MenuItem Header="New" Click="NewFile"></MenuItem>
                 <MenuItem Header="Open" Click="OpenFile"></MenuItem>
                 <MenuItem Header="Save" Click="SaveFile"></MenuItem>
@@ -20,8 +20,8 @@
             <MenuItem Header="Edit">
                 <MenuItem Header="Encryption">
                     <MenuItem Header="Base64">
-                        <MenuItem Header="Coding" Click="Base64Coding"></MenuItem>
-                        <MenuItem Header="Encoding" Click="Base64Encoding"></MenuItem>
+                        <MenuItem Header="Encoding" Click="Base64Coding"></MenuItem>
+                        <MenuItem Header="Decoding" Click="Base64Encoding"></MenuItem>
                     </MenuItem>
                     <MenuItem Header="MD5 Hash File" Click="MD5HashFile"></MenuItem>
                 </MenuItem>
@@ -30,7 +30,7 @@
                 <MenuItem Header="Settings"></MenuItem>
             </MenuItem>
             <MenuItem Header="Help" >
-                <MenuItem Header="Github Page" Click="GitHubPage"></MenuItem>
+                <MenuItem Header="Github Page" Click="GitHubPage" IsEnabled="False"></MenuItem>
                 <MenuItem Header="Author/About program"></MenuItem>
                 <MenuItem Header="Documentation"></MenuItem>
             </MenuItem>

@@ -66,6 +66,10 @@
     <Compile Include="FormNewFile.xaml.cs">
       <DependentUpon>FormNewFile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FormSettings.xaml.cs">
+      <DependentUpon>FormSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageSettings.cs" />
     <Compile Include="MD5HashView.xaml.cs">
       <DependentUpon>MD5HashView.xaml</DependentUpon>
     </Compile>
@@ -75,6 +79,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FormNewFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,7 +125,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
