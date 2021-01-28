@@ -116,15 +116,22 @@ namespace CSVXML_TemplateEditor
                 ExtensionOpenFile = myDialog.FileName.Substring(myDialog.FileName.LastIndexOf('.'));
                 if (ExtensionOpenFile == ".xml")
                 {
-                    string PatchFileNotExtension = myDialog.FileName.Split('.')[0];
-                    XElement DataElement = XElement.Parse(File.ReadAllText(myDialog.FileName));
-                    var csvData = SomeFunctions.XML_CSV(DataElement, ";");
-                    XmlCsvPatch = PatchFileNotExtension + "(csv).csv";
-                    File.WriteAllText(XmlCsvPatch, "ThisTextWillThenBeColumns\n", Encoding.UTF8);
-                    File.AppendAllText(XmlCsvPatch, (string)csvData, Encoding.UTF8);
-                    CSVFileData = csvData;
-                    ConvertXML_CSV xmlcsv = new ConvertXML_CSV();
-                    xmlcsv.ShowDialog();
+                    try
+                    {
+                        string PatchFileNotExtension = myDialog.FileName.Split('.')[0];
+                        XElement DataElement = XElement.Parse(File.ReadAllText(myDialog.FileName));
+                        var csvData = SomeFunctions.XML_CSV(DataElement, ";");
+                        XmlCsvPatch = PatchFileNotExtension + "(csv).csv";
+                        File.WriteAllText(XmlCsvPatch, "ThisTextWillThenBeColumns\n", Encoding.UTF8);
+                        File.AppendAllText(XmlCsvPatch, (string)csvData, Encoding.UTF8);
+                        CSVFileData = csvData;
+                        ConvertXML_CSV xmlcsv = new ConvertXML_CSV();
+                        xmlcsv.ShowDialog();
+                    }
+                    catch
+                    {
+                        smf.IncorrectFile();
+                    }
                 }
                 else if (ExtensionOpenFile == ".csv")
                 {
@@ -186,7 +193,7 @@ namespace CSVXML_TemplateEditor
             }
             catch
             {
-                MessageBox.Show("Incorrerct File!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                smf.IncorrectFile();
             }
         }
         private void SaveXMLFile(bool SaveAs)
@@ -207,14 +214,59 @@ namespace CSVXML_TemplateEditor
             myDialog.Filter = "Documents(*.xml;*.csv)|*.XML;*.csv";
             if (myDialog.ShowDialog() == true)
             {
-                using (var md5 = MD5.Create())
+                try
                 {
-                    using (var stream = File.OpenRead(myDialog.FileName))
+                    using (var md5 = MD5.Create())
                     {
-                        MD5Text = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
-                        MD5HashView md5view = new MD5HashView();
-                        md5view.ShowDialog();
+                        using (var stream = File.OpenRead(myDialog.FileName))
+                        {
+                            MD5Text = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
+                            MD5HashView md5view = new MD5HashView();
+                            md5view.ShowDialog();
+                        }
                     }
+                }
+                catch
+                {
+                    smf.IncorrectFile();
+                }
+            }
+        }
+
+        private void Base64Coding(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog myDialog = new OpenFileDialog();
+            myDialog.Filter = "Documents(*.xml;*.csv)|*.XML;*.csv";
+            if (myDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    Byte[] bytes = File.ReadAllBytes(myDialog.FileName);
+                    String file = Convert.ToBase64String(bytes);
+                    byte[] bytes2 = Encoding.ASCII.GetBytes(file);
+                    File.WriteAllBytes(myDialog.FileName, bytes2);
+                }
+                catch
+                {
+                    smf.IncorrectFile();
+                }
+            }
+        }
+
+        private void Base64Encoding(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog myDialog = new OpenFileDialog();
+            myDialog.Filter = "Documents(*.xml;*.csv)|*.XML;*.csv";
+            if (myDialog.ShowDialog() == true)
+            {
+                try
+                {
+                string text = Encoding.UTF8.GetString(Convert.FromBase64String(File.ReadAllText(myDialog.FileName)));
+                File.WriteAllText(myDialog.FileName, text);
+                }
+                catch
+                {
+                    smf.IncorrectFile();
                 }
             }
         }

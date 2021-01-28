@@ -20,8 +20,8 @@
             <MenuItem Header="Edit">
                 <MenuItem Header="Encryption">
                     <MenuItem Header="Base64">
-                        <MenuItem Header="Coding"></MenuItem>
-                        <MenuItem Header="Encoding"></MenuItem>
+                        <MenuItem Header="Coding" Click="Base64Coding"></MenuItem>
+                        <MenuItem Header="Encoding" Click="Base64Encoding"></MenuItem>
                     </MenuItem>
                     <MenuItem Header="MD5 Hash File" Click="MD5HashFile"></MenuItem>
                 </MenuItem>
@@ -38,7 +38,7 @@
         <DataGrid x:Name="XMLTable" CanUserDeleteRows="True" CanUserResizeRows="False"
                       CanUserSortColumns="True" AutoGenerateColumns="True" CanUserReorderColumns="True"
                       Background="Snow" FontSize="13" FontWeight="Bold" AlternatingRowBackground="#FFEAEAEA"
-                      AlternationCount="1" HorizontalGridLinesBrush="#FF4F4F4F" Margin="0 20 0 0" VerticalGridLinesBrush="#FF4F4F4F">
+                      AlternationCount="1" HorizontalGridLinesBrush="#FF4F4F4F" Margin="0 20 0 0" VerticalGridLinesBrush="#FF4F4F4F" GridLinesVisibility="Vertical">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Добавить столбец"/>

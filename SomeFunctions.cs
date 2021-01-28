@@ -60,7 +60,7 @@ namespace CSVXML_TemplateEditor
             }
             catch
             {
-                MessageBox.Show("Incorrerct File!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                IncorrectFile();
             }
         }
         public void TableToCSV(string patch, string Delimiter = ";")
@@ -84,6 +84,11 @@ namespace CSVXML_TemplateEditor
                         select line;
             sb.Append(string.Join(Environment.NewLine, lines));
             return sb.ToString();
+        }
+
+        public  void IncorrectFile()
+        {
+            MessageBox.Show("Incorrerct File!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
