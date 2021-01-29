@@ -69,7 +69,7 @@
     <Compile Include="FormSettings.xaml.cs">
       <DependentUpon>FormSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LanguageSettings.cs" />
+    <Compile Include="ProgramSettings.cs" />
     <Compile Include="MD5HashView.xaml.cs">
       <DependentUpon>MD5HashView.xaml</DependentUpon>
     </Compile>

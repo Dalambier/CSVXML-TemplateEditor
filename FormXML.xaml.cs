@@ -261,8 +261,8 @@ namespace CSVXML_TemplateEditor
             {
                 try
                 {
-                string text = Encoding.UTF8.GetString(Convert.FromBase64String(File.ReadAllText(myDialog.FileName)));
-                File.WriteAllText(myDialog.FileName, text);
+                    string text = Encoding.UTF8.GetString(Convert.FromBase64String(File.ReadAllText(myDialog.FileName)));
+                    File.WriteAllText(myDialog.FileName, text);
                 }
                 catch
                 {
@@ -271,10 +271,33 @@ namespace CSVXML_TemplateEditor
             }
         }
 
+        private void OpenSettings(object sender, RoutedEventArgs e)
+        {
+            FormSettings settingsfrm = new FormSettings();
+            settingsfrm.ShowDialog();
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            LanguageSettings lng = new LanguageSettings();
-            Menu_File.Header = LanguageSettings.Menu_File;
+            Menu_File.Header = ProgramSettings.Menu_File;
+            Menu_New.Header = ProgramSettings.Menu_New;
+            Menu_Open.Header = ProgramSettings.Menu_Open;
+            Menu_Save.Header = ProgramSettings.Menu_Save;
+            Menu_SaveAs.Header = ProgramSettings.Menu_SaveAs;
+            Menu_Convert.Header = ProgramSettings.Menu_Convert;
+            Menu_Exit.Header = ProgramSettings.Menu_Exit;
+
+            Menu_Edit.Header = ProgramSettings.Menu_Edit;
+            Menu_Encryption.Header = ProgramSettings.Menu_Encryption;
+            Menu_Encoding.Header = ProgramSettings.Menu_Encoding;
+            Menu_Decoding.Header = ProgramSettings.Menu_Decoding;
+            Menu_AddColumn.Header = ProgramSettings.Menu_AddColumn;
+            Menu_Settings.Header = ProgramSettings.Menu_Settings;
+
+            Menu_Help.Header = ProgramSettings.Menu_Help;
+            Menu_Github.Header = ProgramSettings.Menu_GithubPage;
+            Menu_AboutProgram.Header = ProgramSettings.Menu_AboutProgram;
+            Menu_Documentation.Header = ProgramSettings.Menu_Documentation;
         }
     }
 }

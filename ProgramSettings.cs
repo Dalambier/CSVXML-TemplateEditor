@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSVXML_TemplateEditor
 {
-    class LanguageSettings
+    class ProgramSettings
     {
         public static string Menu_File;
         public static string Menu_New;
@@ -56,7 +56,7 @@ namespace CSVXML_TemplateEditor
             }
             else if (Properties.Settings.Default.Language == "Russian")
             {
-                //Главное меню программы
+                //Main menu program
                 Menu_File = "Файл";
                 Menu_New = "Создать";
                 Menu_Open = "Открыть";
@@ -87,10 +87,10 @@ namespace CSVXML_TemplateEditor
                 Properties.Settings.Default.Delimiter = ";";
 
             if (Properties.Settings.Default.MainElementXML == "")
-                Properties.Settings.Default.Delimiter = "user";
+                Properties.Settings.Default.MainElementXML = "user";
 
             if (Properties.Settings.Default.SecondaryElementXML == "")
-                Properties.Settings.Default.Delimiter = "users";
+                Properties.Settings.Default.SecondaryElementXML = "users";
         }
     }
 }

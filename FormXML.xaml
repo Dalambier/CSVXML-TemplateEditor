@@ -9,30 +9,30 @@
     <Grid>
         <Menu VerticalAlignment="Top" FontSize="13" FontWeight="Bold">
             <MenuItem x:Name="Menu_File" Header="File">
-                <MenuItem Header="New" Click="NewFile"></MenuItem>
-                <MenuItem Header="Open" Click="OpenFile"></MenuItem>
-                <MenuItem Header="Save" Click="SaveFile"></MenuItem>
-                <MenuItem Header="Save as" Click="SaveAsFile"></MenuItem>
-                <MenuItem Header="Convert" Click="ConvertFile"></MenuItem>
+                <MenuItem x:Name="Menu_New" Header="New" Click="NewFile"></MenuItem>
+                <MenuItem x:Name="Menu_Open" Header="Open" Click="OpenFile"></MenuItem>
+                <MenuItem x:Name="Menu_Save" Header="Save" Click="SaveFile"></MenuItem>
+                <MenuItem x:Name="Menu_SaveAs" Header="Save as" Click="SaveAsFile"></MenuItem>
+                <MenuItem x:Name="Menu_Convert" Header="Convert" Click="ConvertFile"></MenuItem>
                 <Separator />
-                <MenuItem Header="Exit" Click="ExitProrgam"></MenuItem>
+                <MenuItem x:Name="Menu_Exit" Header="Exit" Click="ExitProrgam"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header="Encryption">
+            <MenuItem x:Name="Menu_Edit" Header="Edit">
+                <MenuItem x:Name="Menu_Encryption" Header="Encryption">
                     <MenuItem Header="Base64">
-                        <MenuItem Header="Encoding" Click="Base64Coding"></MenuItem>
-                        <MenuItem Header="Decoding" Click="Base64Encoding"></MenuItem>
+                        <MenuItem x:Name="Menu_Encoding" Header="Encoding" Click="Base64Coding"></MenuItem>
+                        <MenuItem x:Name="Menu_Decoding" Header="Decoding" Click="Base64Encoding"></MenuItem>
                     </MenuItem>
                     <MenuItem Header="MD5 Hash File" Click="MD5HashFile"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Add column"></MenuItem>
+                <MenuItem x:Name="Menu_AddColumn" Header="Add column"></MenuItem>
                 <Separator />
-                <MenuItem Header="Settings"></MenuItem>
+                <MenuItem x:Name="Menu_Settings" Header="Settings" Click="OpenSettings"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Help" >
-                <MenuItem Header="Github Page" Click="GitHubPage" IsEnabled="False"></MenuItem>
-                <MenuItem Header="Author/About program"></MenuItem>
-                <MenuItem Header="Documentation"></MenuItem>
+            <MenuItem x:Name="Menu_Help" Header="Help" >
+                <MenuItem x:Name="Menu_Github" Header="Github Page" Click="GitHubPage" IsEnabled="False"></MenuItem>
+                <MenuItem x:Name="Menu_AboutProgram" Header="Author/About program"></MenuItem>
+                <MenuItem x:Name="Menu_Documentation" Header="Documentation"></MenuItem>
             </MenuItem>
         </Menu>
         <DataGrid x:Name="XMLTable" CanUserDeleteRows="True" CanUserResizeRows="False"
