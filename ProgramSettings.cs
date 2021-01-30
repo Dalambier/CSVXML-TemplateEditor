@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSVXML_TemplateEditor
+﻿namespace CSVXML_TemplateEditor
 {
     class ProgramSettings
     {
+        public static string Done;
+        public static string Error;
+        public static string IncorrerctFile;
+
+
         public static string Menu_File;
         public static string Menu_New;
         public static string Menu_Open;
@@ -29,10 +28,29 @@ namespace CSVXML_TemplateEditor
         public static string Menu_Documentation;
 
 
+        public static string Settings_Title;
+        public static string Settings_Language;
+        public static string Settings_Delimiter;
+        public static string Settings_MainXMLElement;
+        public static string Settings_SecondaryXMLElement;
+        public static string Settings_AcceptButton;
+        public static string Settings_DefaultButton;
+        public static string Settings_AcceptMessage;
+        public static string Settings_DefaultMessage;
+        public static string Settings_Changed;
+
+
+        public static string Documents;
+
+
         public void LanguageChecked()
         {
             if (Properties.Settings.Default.Language == "English")
             {
+                //Messages
+                Done = "Done";
+                Error = "Error";
+                IncorrerctFile = "Incorrerct File";
                 //Main menu of the program
                 Menu_File = "File";
                 Menu_New = "New";
@@ -53,9 +71,29 @@ namespace CSVXML_TemplateEditor
                 Menu_GithubPage = "Github Page";
                 Menu_AboutProgram = "About program";
                 Menu_Documentation = "Documentation";
+
+                //Settings form
+                Settings_Title = "Settings";
+                Settings_Language = "Language";
+                Settings_Delimiter = "Delimiter";
+                Settings_MainXMLElement = "Main XML Element";
+                Settings_SecondaryXMLElement = "Secondary XML Element";
+                Settings_AcceptButton = "Accept";
+                Settings_DefaultButton = "Default";
+                Settings_AcceptMessage = "The settings have been applied, to change the language completely, restart this software!";
+                Settings_DefaultMessage = "The settings are set by default, to change the language completely, restart this software!";
+                Settings_Changed = "Settings Changed";
+
+                //FileWork
+                Documents = "Documents";
             }
             else if (Properties.Settings.Default.Language == "Russian")
             {
+                //Messages
+                Error = "Ошибка";
+                Done = "Выполнено";
+                IncorrerctFile = "Некорректный файл";
+
                 //Main menu program
                 Menu_File = "Файл";
                 Menu_New = "Создать";
@@ -76,6 +114,21 @@ namespace CSVXML_TemplateEditor
                 Menu_GithubPage = "Страница Github";
                 Menu_AboutProgram = "О программе";
                 Menu_Documentation = "Документация";
+
+                //Settings form
+                Settings_Title = "Настройки";
+                Settings_Language = "Язык";
+                Settings_Delimiter = "Делимитер";
+                Settings_MainXMLElement = "Основной XML элемент";
+                Settings_SecondaryXMLElement = "Вторичный XML элемент";
+                Settings_AcceptButton = "Применить";
+                Settings_DefaultButton = "По умолчанию";
+                Settings_AcceptMessage = "Настройки применены, для полного изменения языка, перезапустите данное программное обеспечение";
+                Settings_DefaultMessage = "Настройки поставлены по умолчанию, для полного изменения языка, перезапустите данное программное обеспечение";
+                Settings_Changed = "Настройки изменены";
+
+                //FileWork
+                Documents = "Документы";
             }
         }
         public void SettingsIsNullIsNull()

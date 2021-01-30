@@ -29,6 +29,7 @@ namespace CSVXML_TemplateEditor
         public static object CSVFileData;
         public static string MD5Text;
 
+
         private void NewFile(object sender, RoutedEventArgs e)
         {
             FormNewFile newfile = new FormNewFile();
@@ -53,7 +54,7 @@ namespace CSVXML_TemplateEditor
         private void OpenFile(object sender, RoutedEventArgs e)
         {
             OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = "Documents(*.xml;*.csv)|*.XML;*.csv";
+            myDialog.Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv";
 
             if (myDialog.ShowDialog() == true)
             {
@@ -87,7 +88,7 @@ namespace CSVXML_TemplateEditor
         private void SaveAsFile(object sender, RoutedEventArgs e)
         {
             SaveFileDialog myDialog = new SaveFileDialog();
-            myDialog.Filter = "XML-Document (*.xml)|*.xml|CSV-Document (*.csv)|*.csv";
+            myDialog.Filter = "XML-" + ProgramSettings.Documents + "(*.xml)|*.xml|CSV-" + ProgramSettings.Documents + " (*.csv)|*.csv";
             if (myDialog.ShowDialog() == true)
             {
                 smf.CheckClipBoard();
@@ -108,7 +109,7 @@ namespace CSVXML_TemplateEditor
         private void ConvertFile(object sender, RoutedEventArgs e)
         {
             OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = "Documents(*.xml;*.csv)|*.XML;*.csv";
+            myDialog.Filter = ProgramSettings.Documents  + "(*.xml;*.csv)|*.XML;*.csv";
 
             if (myDialog.ShowDialog() == true)
             {
@@ -120,7 +121,7 @@ namespace CSVXML_TemplateEditor
                     {
                         string PatchFileNotExtension = myDialog.FileName.Split('.')[0];
                         XElement DataElement = XElement.Parse(File.ReadAllText(myDialog.FileName));
-                        var csvData = SomeFunctions.XML_CSV(DataElement, ";");
+                        var csvData = SomeFunctions.XML_CSV(DataElement, Properties.Settings.Default.Delimiter);
                         XmlCsvPatch = PatchFileNotExtension + "(csv).csv";
                         File.WriteAllText(XmlCsvPatch, "ThisTextWillThenBeColumns\n", Encoding.UTF8);
                         File.AppendAllText(XmlCsvPatch, (string)csvData, Encoding.UTF8);
@@ -138,7 +139,7 @@ namespace CSVXML_TemplateEditor
                     try
                     {
                         string PatchFileNotExtension = myDialog.FileName.Split('.')[0];
-                        smf.CSV_XML(PatchOpenFile, PatchFileNotExtension + "(xml).xml", "users", "user");
+                        smf.CSV_XML(PatchOpenFile, PatchFileNotExtension + "(xml).xml", Properties.Settings.Default.MainElementXML, Properties.Settings.Default.SecondaryElementXML, Properties.Settings.Default.Delimiter[0]);
                     }
                     catch { }
                 }
@@ -160,58 +161,10 @@ namespace CSVXML_TemplateEditor
             Application.Current.Shutdown();
         }
 
-
-        private void OpenCSVFile()
-        {
-            try
-            {
-                smf.CSV_XML(PatchOpenFile, "tempfile.xml", "users", "user");
-                DataSet dataset = new DataSet();
-                dataset.ReadXml("tempfile.xml");
-                XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
-                File.Delete("tempfile.xml");
-            }
-            catch { }
-        }
-        private void SaveCSVFile(bool SaveAs)
-        {
-            if (SaveAs == false)
-                File.Delete(PatchOpenFile);
-            XMLTable.SelectAllCells();
-            XMLTable.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
-            ApplicationCommands.Copy.Execute(null, XMLTable);
-            XMLTable.UnselectAll();
-            smf.TableToCSV(PatchOpenFile);
-        }
-        private void OpenXMLFile()
-        {
-            try
-            {
-                DataSet dataset = new DataSet();
-                dataset.ReadXml(PatchOpenFile);
-                XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
-            }
-            catch
-            {
-                smf.IncorrectFile();
-            }
-        }
-        private void SaveXMLFile(bool SaveAs)
-        {
-            if (SaveAs == false)
-                File.Delete(PatchOpenFile);
-            XMLTable.SelectAllCells();
-            XMLTable.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
-            ApplicationCommands.Copy.Execute(null, XMLTable);
-            XMLTable.UnselectAll();
-            smf.TableToCSV("tempfile.csv");
-            smf.CSV_XML("tempfile.csv", PatchOpenFile, "users", "user");
-            File.Delete("tempfile.csv");
-        }
         private void MD5HashFile(object sender, RoutedEventArgs e)
         {
             OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = "Documents(*.xml;*.csv)|*.XML;*.csv";
+            myDialog.Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv";
             if (myDialog.ShowDialog() == true)
             {
                 try
@@ -236,7 +189,7 @@ namespace CSVXML_TemplateEditor
         private void Base64Coding(object sender, RoutedEventArgs e)
         {
             OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = "Documents(*.xml;*.csv)|*.XML;*.csv";
+            myDialog.Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv";
             if (myDialog.ShowDialog() == true)
             {
                 try
@@ -256,7 +209,7 @@ namespace CSVXML_TemplateEditor
         private void Base64Encoding(object sender, RoutedEventArgs e)
         {
             OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = "Documents(*.xml;*.csv)|*.XML;*.csv";
+            myDialog.Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv";
             if (myDialog.ShowDialog() == true)
             {
                 try
@@ -298,6 +251,60 @@ namespace CSVXML_TemplateEditor
             Menu_Github.Header = ProgramSettings.Menu_GithubPage;
             Menu_AboutProgram.Header = ProgramSettings.Menu_AboutProgram;
             Menu_Documentation.Header = ProgramSettings.Menu_Documentation;
+        }
+
+
+
+        //Functions
+        private void OpenCSVFile()
+        {
+            try
+            {
+                smf.CSV_XML(PatchOpenFile, "tempfile.xml", Properties.Settings.Default.MainElementXML, Properties.Settings.Default.SecondaryElementXML, Properties.Settings.Default.Delimiter[0]);
+                DataSet dataset = new DataSet();
+                dataset.ReadXml("tempfile.xml");
+                XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
+                File.Delete("tempfile.xml");
+            }
+            catch { }
+        }
+
+        private void SaveCSVFile(bool SaveAs)
+        {
+            if (SaveAs == false)
+                File.Delete(PatchOpenFile);
+            XMLTable.SelectAllCells();
+            XMLTable.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, XMLTable);
+            XMLTable.UnselectAll();
+            smf.TableToCSV(PatchOpenFile, Properties.Settings.Default.Delimiter);
+        }
+
+        private void OpenXMLFile()
+        {
+            try
+            {
+                DataSet dataset = new DataSet();
+                dataset.ReadXml(PatchOpenFile);
+                XMLTable.ItemsSource = dataset.Tables[0].DefaultView;
+            }
+            catch
+            {
+                smf.IncorrectFile();
+            }
+        }
+
+        private void SaveXMLFile(bool SaveAs)
+        {
+            if (SaveAs == false)
+                File.Delete(PatchOpenFile);
+            XMLTable.SelectAllCells();
+            XMLTable.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, XMLTable);
+            XMLTable.UnselectAll();
+            smf.TableToCSV("tempfile.csv", Properties.Settings.Default.Delimiter);
+            smf.CSV_XML("tempfile.csv", PatchOpenFile, Properties.Settings.Default.MainElementXML, Properties.Settings.Default.SecondaryElementXML, Properties.Settings.Default.Delimiter[0]);
+            File.Delete("tempfile.csv");
         }
     }
 }

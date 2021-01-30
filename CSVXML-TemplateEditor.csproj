@@ -145,5 +145,14 @@
   <ItemGroup>
     <Resource Include="images\Icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\DelimiterToolTip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\MainElementXMLToolTip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\SecondaryElementXMLToolTip.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

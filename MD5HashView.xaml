@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSVXML_TemplateEditor"
         mc:Ignorable="d"
-        Title="MD5HashView" Height="220" Width="594" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="MD5Hash" Height="220" Width="594" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="images/qwe.jpg" x:Name="IB" Stretch="UniformToFill"/>
     </Window.Background>

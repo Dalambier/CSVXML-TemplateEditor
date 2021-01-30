@@ -55,7 +55,7 @@ namespace CSVXML_TemplateEditor
                         file.WriteLine(NewTableString);
                         file.WriteLine(RowTable);
                         file.Close();
-                        smf.CSV_XML("tempfile.csv", myDialog.FileName, "users", "user");
+                        smf.CSV_XML("tempfile.csv", myDialog.FileName, "users", "user", ';');
                         File.Delete("tempfile.csv");
                     }
                     else if (ExtensionOpenFile == ".csv")
