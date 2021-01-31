@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
@@ -20,7 +21,7 @@ namespace CSVXML_TemplateEditor
             MinHeight = 150;
         }
 
-        SomeFunctions smf = new SomeFunctions();
+        readonly SomeFunctions smf = new SomeFunctions();
 
         public string PatchOpenFile; //Сохранение пути открываемого файла
         public string ExtensionOpenFile; //Сохранение расширения файла
@@ -53,8 +54,10 @@ namespace CSVXML_TemplateEditor
 
         private void OpenFile(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv";
+            OpenFileDialog myDialog = new OpenFileDialog
+            {
+                Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv"
+            };
 
             if (myDialog.ShowDialog() == true)
             {
@@ -87,8 +90,10 @@ namespace CSVXML_TemplateEditor
 
         private void SaveAsFile(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog myDialog = new SaveFileDialog();
-            myDialog.Filter = "XML-" + ProgramSettings.Documents + "(*.xml)|*.xml|CSV-" + ProgramSettings.Documents + " (*.csv)|*.csv";
+            SaveFileDialog myDialog = new SaveFileDialog
+            {
+                Filter = "XML-" + ProgramSettings.Documents + "(*.xml)|*.xml|CSV-" + ProgramSettings.Documents + " (*.csv)|*.csv"
+            };
             if (myDialog.ShowDialog() == true)
             {
                 smf.CheckClipBoard();
@@ -108,8 +113,10 @@ namespace CSVXML_TemplateEditor
 
         private void ConvertFile(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = ProgramSettings.Documents  + "(*.xml;*.csv)|*.XML;*.csv";
+            OpenFileDialog myDialog = new OpenFileDialog
+            {
+                Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv"
+            };
 
             if (myDialog.ShowDialog() == true)
             {
@@ -163,8 +170,10 @@ namespace CSVXML_TemplateEditor
 
         private void MD5HashFile(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv";
+            OpenFileDialog myDialog = new OpenFileDialog
+            {
+                Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv"
+            };
             if (myDialog.ShowDialog() == true)
             {
                 try
@@ -188,8 +197,10 @@ namespace CSVXML_TemplateEditor
 
         private void Base64Coding(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv";
+            OpenFileDialog myDialog = new OpenFileDialog
+            {
+                Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv"
+            };
             if (myDialog.ShowDialog() == true)
             {
                 try
@@ -208,8 +219,10 @@ namespace CSVXML_TemplateEditor
 
         private void Base64Encoding(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog myDialog = new OpenFileDialog();
-            myDialog.Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv";
+            OpenFileDialog myDialog = new OpenFileDialog
+            {
+                Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv"
+            };
             if (myDialog.ShowDialog() == true)
             {
                 try
@@ -228,6 +241,23 @@ namespace CSVXML_TemplateEditor
         {
             FormSettings settingsfrm = new FormSettings();
             settingsfrm.ShowDialog();
+        }
+
+        private void AddRowMenu(object sender, RoutedEventArgs e)
+        {
+            if (ExtensionOpenFile == ".csv")
+            {
+                AddRow(true);
+            }
+            else if (ExtensionOpenFile == ".xml")
+            {
+                AddRow(false);
+            }
+        }
+
+        private void AddColumn(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -252,6 +282,14 @@ namespace CSVXML_TemplateEditor
             Menu_AboutProgram.Header = ProgramSettings.Menu_AboutProgram;
             Menu_Documentation.Header = ProgramSettings.Menu_Documentation;
         }
+
+
+
+
+
+
+
+
 
 
 
@@ -305,6 +343,46 @@ namespace CSVXML_TemplateEditor
             smf.TableToCSV("tempfile.csv", Properties.Settings.Default.Delimiter);
             smf.CSV_XML("tempfile.csv", PatchOpenFile, Properties.Settings.Default.MainElementXML, Properties.Settings.Default.SecondaryElementXML, Properties.Settings.Default.Delimiter[0]);
             File.Delete("tempfile.csv");
+        }
+
+        private void AddRow(bool ItsCSV)
+        {
+            string Filepatch;
+            if (ItsCSV == true)
+            {
+                SaveCSVFile(false);
+                Filepatch = PatchOpenFile;
+            }
+            else
+            {
+                XMLTable.SelectAllCells();
+                XMLTable.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+                ApplicationCommands.Copy.Execute(null, XMLTable);
+                XMLTable.UnselectAll();
+                Filepatch = "tempfile.csv";
+                smf.TableToCSV(Filepatch, Properties.Settings.Default.Delimiter);
+            }
+            int i = 0, count = 0; string NewRow = "";
+            while ((i = File.ReadLines(Filepatch).Skip(1).First().IndexOf(Properties.Settings.Default.Delimiter, i)) != -1)
+            { ++count; i += Properties.Settings.Default.Delimiter.Length; } //Просчёт сколько делимитеров
+
+            for (int NewRowI = 0; NewRowI < count; NewRowI++)
+            {
+                NewRow += Properties.Settings.Default.Delimiter; //Заполнение строки делимитерами
+            }
+
+            using (StreamWriter file = new StreamWriter(Filepatch, true, Encoding.UTF8))
+            {
+                file.WriteLine(NewRow); //Добавление строки в файл
+            }
+            if (ItsCSV == true)
+                OpenCSVFile();
+            else
+            {
+                smf.CSV_XML(Filepatch, PatchOpenFile, Properties.Settings.Default.MainElementXML, Properties.Settings.Default.SecondaryElementXML, Properties.Settings.Default.Delimiter[0]);
+                File.Delete(Filepatch);
+                OpenXMLFile();
+            }
         }
     }
 }

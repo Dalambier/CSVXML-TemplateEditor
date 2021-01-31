@@ -12,7 +12,7 @@ namespace CSVXML_TemplateEditor
         public FormNewFile()
         {
             InitializeComponent();
-            MinWidth = 400;
+            MinWidth = 485;
             MinHeight = 200;
         }
         public int ColumnValue = 1;
@@ -21,8 +21,8 @@ namespace CSVXML_TemplateEditor
         private void NextColumnMouseDown(object sender, MouseButtonEventArgs e)
         {
             ColumnValue++;
-            ColumTitle.Text = "Enter text of " + ColumnValue + " column";
-            NewTableString += TextFieldColumn.Text + ';';
+            ColumTitle.Text = ProgramSettings.EnterText + ColumnValue + ProgramSettings.OnColumn;
+            NewTableString += TextFieldColumn.Text + Properties.Settings.Default.Delimiter[0];
             TextFieldColumn.Text = "";
         }
 
@@ -30,17 +30,17 @@ namespace CSVXML_TemplateEditor
         {
             if (ColumnValue < 3)
             {
-                MessageBox.Show("Minimum column = 2", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ProgramSettings.Dont1Column, ProgramSettings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
                 SomeFunctions smf = new SomeFunctions();
                 NewTableString = NewTableString.Remove(NewTableString.Length - 1);
-                string RowTable = ";";
+                string RowTable = Properties.Settings.Default.Delimiter;
 
 
                 SaveFileDialog myDialog = new SaveFileDialog();
-                myDialog.Filter = "XML-Document (*.xml)|*.xml|CSV-Document (*.csv)|*.csv";
+                myDialog.Filter = "XML-" + ProgramSettings.Documents + " (*.xml)|*.xml|CSV-" + ProgramSettings.Documents + " (*.csv)|*.csv";
                 if (myDialog.ShowDialog() == true)
                 {
                     FormXML.NewFilePatch = myDialog.FileName;
@@ -49,20 +49,20 @@ namespace CSVXML_TemplateEditor
                     {
                         for (int i = 0; i < ColumnValue - 3; i++)
                         {
-                            RowTable += ";";
+                            RowTable += Properties.Settings.Default.Delimiter;
                         }
                         StreamWriter file = new StreamWriter("tempfile.csv", true, Encoding.UTF8);
                         file.WriteLine(NewTableString);
                         file.WriteLine(RowTable);
                         file.Close();
-                        smf.CSV_XML("tempfile.csv", myDialog.FileName, "users", "user", ';');
+                        smf.CSV_XML("tempfile.csv", myDialog.FileName, Properties.Settings.Default.MainElementXML, Properties.Settings.Default.SecondaryElementXML, Properties.Settings.Default.Delimiter[0]);
                         File.Delete("tempfile.csv");
                     }
                     else if (ExtensionOpenFile == ".csv")
                     {
                         for (int i = 0; i < ColumnValue - 3; i++)
                         {
-                            RowTable += ";";
+                            RowTable += Properties.Settings.Default.Delimiter;
                         }
                         StreamWriter file = new StreamWriter(myDialog.FileName, true, Encoding.UTF8);
                         file.WriteLine(NewTableString);
@@ -92,6 +92,13 @@ namespace CSVXML_TemplateEditor
         private void CompleteMouseLeave(object sender, MouseEventArgs e)
         {
             CompleteButton.Background = new SolidColorBrush(Color.FromRgb(15, 17, 26));
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ColumTitle.Text = ProgramSettings.NewFileTitle;
+            CompleteButtonText.Text = ProgramSettings.CompleteButton;
+            NextColumnText.Text = ProgramSettings.NextColumnButton;
         }
     }
 }

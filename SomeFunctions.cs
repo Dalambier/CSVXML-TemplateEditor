@@ -39,8 +39,10 @@ namespace CSVXML_TemplateEditor
                 int delimiter_i = 0, csv_columns = 1, csv_rows = CsvText.GetUpperBound(0) + 1;//Переменные для поиска столбцов + расчёт строк
                 string delimiter_p = Delimiter.ToString(), column_checker = File.ReadLines(patch).Skip(1).First(); //Переменные для поиска столбцов
                 while ((delimiter_i = column_checker.IndexOf(delimiter_p, delimiter_i)) != -1) { ++csv_columns; delimiter_i += delimiter_p.Length; }
-                XmlWriterSettings XmlSettings = new XmlWriterSettings();
-                XmlSettings.Indent = true;
+                XmlWriterSettings XmlSettings = new XmlWriterSettings
+                {
+                    Indent = true
+                };
                 XmlWriter xmlWriter = XmlWriter.Create(XMLFileName, XmlSettings);
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement(MainElement);
@@ -67,8 +69,11 @@ namespace CSVXML_TemplateEditor
         {
             string ResultClipBoardCopy = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
             File.AppendAllText(patch, ResultClipBoardCopy, UnicodeEncoding.UTF8);
-            var CSVLines = File.ReadAllLines(patch);
-            File.WriteAllLines(patch, CSVLines.Take(CSVLines.Length - 1).ToArray(), UnicodeEncoding.UTF8);
+
+            //Удаление последней строки из файла (в настоящий момент не нужна, но оставлю на память)
+            //var CSVLines = File.ReadAllLines(patch);
+            //File.WriteAllLines(patch, CSVLines.Take(CSVLines.Length - 1).ToArray(), UnicodeEncoding.UTF8);
+
             if (Delimiter != ",")
             {
                 string text = File.ReadAllText(patch, UnicodeEncoding.UTF8);

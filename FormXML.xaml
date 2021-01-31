@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CSVXML" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" AllowDrop="True" Closed="Window_Closed" Loaded="Window_Loaded">
     <Grid>
-        <Menu VerticalAlignment="Top" FontSize="13" FontWeight="Bold">
+        <Menu VerticalAlignment="Top" FontSize="13" FontWeight="Bold" >
             <MenuItem x:Name="Menu_File" Header="File">
                 <MenuItem x:Name="Menu_New" Header="New" Click="NewFile"></MenuItem>
                 <MenuItem x:Name="Menu_Open" Header="Open" Click="OpenFile"></MenuItem>
@@ -35,14 +35,14 @@
                 <MenuItem x:Name="Menu_Documentation" Header="Documentation"></MenuItem>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="XMLTable" CanUserDeleteRows="True" CanUserResizeRows="False"
+        <DataGrid x:Name="XMLTable" CanUserDeleteRows="True" CanUserResizeRows="False" CanUserAddRows="False"
                       CanUserSortColumns="True" AutoGenerateColumns="True" CanUserReorderColumns="True"
                       Background="Snow" FontSize="13" FontWeight="Bold" AlternatingRowBackground="#FFEAEAEA"
                       AlternationCount="1" HorizontalGridLinesBrush="#FF4F4F4F" Margin="0 20 0 0" VerticalGridLinesBrush="#FF4F4F4F" GridLinesVisibility="Vertical">
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Добавить столбец"/>
-                    <MenuItem Header="Добавить строку"/>
+                    <MenuItem Header="Добавить столбец" Click="AddColumn"/>
+                    <MenuItem Header="Добавить строку" Click="AddRowMenu"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

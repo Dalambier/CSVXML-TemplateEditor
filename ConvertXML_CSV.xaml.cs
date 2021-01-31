@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -10,7 +11,6 @@ namespace CSVXML_TemplateEditor
         public ConvertXML_CSV()
         {
             InitializeComponent();
-            FormXML FormXML = new FormXML();
             row.Text = File.ReadLines(FormXML.XmlCsvPatch).Skip(1).First();
         }
 
@@ -18,7 +18,7 @@ namespace CSVXML_TemplateEditor
         {
             if(TextFieldColumns.Text == "")
             {
-                MessageBox.Show("The input field is empty!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ProgramSettings.TheInputFieldIsEmpty, ProgramSettings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -43,9 +43,15 @@ namespace CSVXML_TemplateEditor
                 }
                 catch
                 {
-                    MessageBox.Show("Unable to specify columns for the file!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ProgramSettings.UnableToSpecifyColumnsForTheFile, ProgramSettings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            EnterTextButton.Text = ProgramSettings.Enter;
+            TitleName.Text = ProgramSettings.EnterColumnsForCsvFile;
         }
     }
 }

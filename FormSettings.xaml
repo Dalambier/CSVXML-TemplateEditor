@@ -31,7 +31,7 @@
                 <TextBlock x:Name="SettingsTitle"   Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="30" Text="Settings" HorizontalAlignment="Center" Margin="0 0 0 10"/>
 
                 <TextBlock x:Name="LanguageText" Grid.Row="1" Grid.Column="0" FontWeight="Bold" FontSize="18" Text="Language" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="5" />
-                <ComboBox  x:Name="LanguageBox"  Grid.Row="1" Grid.Column="1" FontWeight="Bold" FontSize="18" Width="100"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ComboBox  x:Name="LanguageBox" SelectedIndex="0"  Grid.Row="1" Grid.Column="1" FontWeight="Bold" FontSize="18" Width="100"  HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="English"  />
                     <TextBlock Text="Русский"/>
                 </ComboBox>

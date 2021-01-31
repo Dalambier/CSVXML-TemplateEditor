@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSVXML_TemplateEditor"
         mc:Ignorable="d"
-        Title="Convert XML to CSV" Height="300" Width="600">
+        Title="Convert XML to CSV" Height="300" Width="600" Loaded="Window_Loaded">
     <Window.Background>
         <ImageBrush ImageSource="images/qwe.jpg" x:Name="IB" Stretch="UniformToFill"/>
     </Window.Background>
@@ -24,11 +24,11 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Enter columns for csv file" HorizontalAlignment="Center" Margin="0 0 0 5" FontSize="30" FontWeight="Bold"/>
+                <TextBlock x:Name="TitleName" Grid.Row="0" Grid.ColumnSpan="2" Text="Enter columns for csv file" HorizontalAlignment="Center" Margin="0 0 0 5" FontSize="30" FontWeight="Bold"/>
                 <TextBlock x:Name="row" Grid.Row="1" Grid.ColumnSpan="2" Text=";;;;" HorizontalAlignment="Center" Margin="0 0 0 5" FontSize="20" FontWeight="Bold" Foreground="#FF4B4B4B"/>
                 <TextBox x:Name="TextFieldColumns" FontSize="15" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="2" Grid.Column="0" Background="White"></TextBox>
                 <Border x:Name="CompleteButton" Grid.Row="2" Grid.Column="2" Height="23" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="EnterButton">
-                    <TextBlock Text="Enter" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                    <TextBlock x:Name="EnterTextButton" Text="Enter" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
                 </Border>
             </Grid>
         </Border>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSVXML_TemplateEditor"
         mc:Ignorable="d"
-        Title="New file" Height="200" Width="420" WindowStartupLocation="CenterScreen" Icon="images/Icon.png">
+        Title="New file" Height="200" Width="485" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" Loaded="Window_Loaded">
     <Window.Background>
         <ImageBrush ImageSource="images/qwe.jpg" x:Name="IB" Stretch="UniformToFill"/>
     </Window.Background>
@@ -18,7 +18,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition Width="120"></ColumnDefinition>
-                    <ColumnDefinition Width="90"></ColumnDefinition>
+                    <ColumnDefinition Width="110"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
@@ -27,10 +27,10 @@
                 <TextBlock x:Name="ColumTitle" Grid.Row="0" Grid.ColumnSpan="3" Text="Enter text of 1 column" HorizontalAlignment="Center" Margin="0 0 0 10" FontSize="30" FontWeight="Bold"/>
                 <TextBox x:Name="TextFieldColumn" FontSize="15" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Background="White"></TextBox>
                 <Border x:Name="NextColumnButton" Grid.Row="1" Grid.Column="1" Height="23" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="NextColumnMouseDown" MouseEnter="NextColumnMouseEnter" MouseLeave="NextColumnMouseLeave">
-                    <TextBlock Text="Next column" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                    <TextBlock x:Name="NextColumnText" Text="Next column" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
                 </Border>
                 <Border x:Name="CompleteButton" Grid.Row="1" Grid.Column="2" Height="23" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="CompleteMouseDown" MouseEnter="CompleteMouseEnter" MouseLeave="CompleteMouseLeave">
-                    <TextBlock Text="Complete" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                    <TextBlock x:Name="CompleteButtonText" Text="Complete" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
                 </Border>
             </Grid>
         </Border>

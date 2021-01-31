@@ -25,9 +25,9 @@ namespace CSVXML_TemplateEditor
             if (MD5FileHashText.Text.Length == MD5FileHashTextCheck.Text.Length)
             {
                 if (MD5FileHashText.Text == MD5FileHashTextCheck.Text)
-                    MessageBox.Show("The values match!", "Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(ProgramSettings.TheValuesMatch, ProgramSettings.Done, MessageBoxButton.OK, MessageBoxImage.Information);
                 else
-                    MessageBox.Show("The values don't match!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ProgramSettings.TheValuesDontMatch, ProgramSettings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

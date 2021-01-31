@@ -40,7 +40,22 @@
         public static string Settings_Changed;
 
 
+        public static string NewFileTitle;
+        public static string CompleteButton;
+        public static string NextColumnButton;
+        public static string Dont1Column;
+        public static string EnterText;
+        public static string OnColumn;
+
+
         public static string Documents;
+        public static string TheInputFieldIsEmpty;
+        public static string UnableToSpecifyColumnsForTheFile;
+        public static string Enter;
+        public static string EnterColumnsForCsvFile;
+        public static string TheValuesMatch;
+        public static string TheValuesDontMatch;
+
 
 
         public void LanguageChecked()
@@ -84,8 +99,22 @@
                 Settings_DefaultMessage = "The settings are set by default, to change the language completely, restart this software!";
                 Settings_Changed = "Settings Changed";
 
+                //New File
+                NewFileTitle = "Enter text of 1 column";
+                CompleteButton = "Colmplete";
+                NextColumnButton = "Next column";
+                Dont1Column = "Minimum column = 2";
+                EnterText = "Enter text of ";
+                OnColumn = " column";
+
                 //FileWork
                 Documents = "Documents";
+                TheInputFieldIsEmpty = "The input field is empty!";
+                UnableToSpecifyColumnsForTheFile = "Unable to specify columns for the file";
+                Enter = "Enter";
+                EnterColumnsForCsvFile = "Enter columns for csv file";
+                TheValuesMatch = "The values match";
+                TheValuesDontMatch = "The values don't match";
             }
             else if (Properties.Settings.Default.Language == "Russian")
             {
@@ -127,8 +156,22 @@
                 Settings_DefaultMessage = "Настройки поставлены по умолчанию, для полного изменения языка, перезапустите данное программное обеспечение";
                 Settings_Changed = "Настройки изменены";
 
+                //New File
+                NewFileTitle = "Введите текст в 1 столбец";
+                CompleteButton = "Завершить";
+                NextColumnButton = "Следующий";
+                Dont1Column = "Минимальное количество столбцов в файле = 2";
+                EnterText = "Введите текст в ";
+                OnColumn = " столбец";
+
                 //FileWork
                 Documents = "Документы";
+                TheInputFieldIsEmpty = "Поле ввода пустое!";
+                UnableToSpecifyColumnsForTheFile = "Невозможно указать столбцы для файла";
+                Enter = "Ввод";
+                EnterColumnsForCsvFile = "Введите столбцы для csv-файла";
+                TheValuesMatch = "Значения совпадают";
+                TheValuesDontMatch = "Значения не совпадают";
             }
         }
         public void SettingsIsNullIsNull()
@@ -140,10 +183,10 @@
                 Properties.Settings.Default.Delimiter = ";";
 
             if (Properties.Settings.Default.MainElementXML == "")
-                Properties.Settings.Default.MainElementXML = "user";
+                Properties.Settings.Default.MainElementXML = "users";
 
             if (Properties.Settings.Default.SecondaryElementXML == "")
-                Properties.Settings.Default.SecondaryElementXML = "users";
+                Properties.Settings.Default.SecondaryElementXML = "user";
         }
     }
 }
