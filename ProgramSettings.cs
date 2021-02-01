@@ -95,8 +95,8 @@
                 Settings_SecondaryXMLElement = "Secondary XML Element";
                 Settings_AcceptButton = "Accept";
                 Settings_DefaultButton = "Default";
-                Settings_AcceptMessage = "The settings have been applied, to change the language completely, restart this software!";
-                Settings_DefaultMessage = "The settings are set by default, to change the language completely, restart this software!";
+                Settings_AcceptMessage = "The settings have been applied";
+                Settings_DefaultMessage = "The settings are set by default";
                 Settings_Changed = "Settings Changed";
 
                 //New File
@@ -152,8 +152,8 @@
                 Settings_SecondaryXMLElement = "Вторичный XML элемент";
                 Settings_AcceptButton = "Применить";
                 Settings_DefaultButton = "По умолчанию";
-                Settings_AcceptMessage = "Настройки применены, для полного изменения языка, перезапустите данное программное обеспечение";
-                Settings_DefaultMessage = "Настройки поставлены по умолчанию, для полного изменения языка, перезапустите данное программное обеспечение";
+                Settings_AcceptMessage = "Настройки применены";
+                Settings_DefaultMessage = "Настройки поставлены по умолчанию";
                 Settings_Changed = "Настройки изменены";
 
                 //New File

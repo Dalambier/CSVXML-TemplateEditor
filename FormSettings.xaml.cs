@@ -22,6 +22,7 @@ namespace CSVXML_TemplateEditor
             Properties.Settings.Default.Save();
             ProgramSettings lg = new ProgramSettings();
             lg.LanguageChecked();
+            SetLanguage();
             MessageBox.Show(ProgramSettings.Settings_DefaultMessage, ProgramSettings.Done, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -41,6 +42,7 @@ namespace CSVXML_TemplateEditor
             Properties.Settings.Default.Save();
             ProgramSettings lg = new ProgramSettings();
             lg.LanguageChecked();
+            SetLanguage();
             MessageBox.Show(ProgramSettings.Settings_AcceptMessage, ProgramSettings.Done, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -58,7 +60,10 @@ namespace CSVXML_TemplateEditor
             {
                 LanguageBox.SelectedIndex = 1;
             }
-            //Language
+            SetLanguage();
+        }
+        private void SetLanguage()
+        {
             SettingsTitle.Text = ProgramSettings.Settings_Title;
             LanguageText.Text = ProgramSettings.Settings_Language;
             Delimiter.Text = ProgramSettings.Settings_Delimiter;

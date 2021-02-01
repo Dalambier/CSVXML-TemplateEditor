@@ -176,21 +176,14 @@ namespace CSVXML_TemplateEditor
             };
             if (myDialog.ShowDialog() == true)
             {
-                try
+                using (var md5 = MD5.Create())
                 {
-                    using (var md5 = MD5.Create())
+                    using (var stream = File.OpenRead(myDialog.FileName))
                     {
-                        using (var stream = File.OpenRead(myDialog.FileName))
-                        {
-                            MD5Text = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
-                            MD5HashView md5view = new MD5HashView();
-                            md5view.ShowDialog();
-                        }
+                        MD5Text = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
+                        MD5HashView md5view = new MD5HashView();
+                        md5view.ShowDialog();
                     }
-                }
-                catch
-                {
-                    smf.IncorrectFile();
                 }
             }
         }
@@ -241,9 +234,10 @@ namespace CSVXML_TemplateEditor
         {
             FormSettings settingsfrm = new FormSettings();
             settingsfrm.ShowDialog();
+            SetLanguage();
         }
 
-        private void AddRowMenu(object sender, RoutedEventArgs e)
+        private void AddRowContextMenu(object sender, RoutedEventArgs e)
         {
             if (ExtensionOpenFile == ".csv")
             {
@@ -255,12 +249,61 @@ namespace CSVXML_TemplateEditor
             }
         }
 
-        private void AddColumn(object sender, RoutedEventArgs e)
+        private void AddColumnContextMenu(object sender, RoutedEventArgs e)
         {
+            if (ExtensionOpenFile == ".csv")
+            {
 
+                var inputLines = File.ReadAllLines(PatchOpenFile, Encoding.UTF8);
+                for (int i = 0; i < inputLines.Length; i++)
+                {
+                    if (i == 0)
+                        inputLines[i] = inputLines[i] + Properties.Settings.Default.Delimiter + "NewColumn";
+                    else
+                        inputLines[i] = inputLines[i] + Properties.Settings.Default.Delimiter;
+                }
+                File.WriteAllLines(PatchOpenFile, inputLines, Encoding.UTF8);
+                OpenCSVFile();
+            }
+            else if (ExtensionOpenFile == ".xml")
+            {
+
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetLanguage();
+        }
+
+
+
+
+
+        private void AddColumn(bool ItsCSV)
+        {
+
+
+
+            var inputLines = File.ReadAllLines(PatchOpenFile, Encoding.UTF8);
+            for (int i = 0; i < inputLines.Length; i++)
+            {
+                if (i == 0)
+                    inputLines[i] = inputLines[i] + Properties.Settings.Default.Delimiter + "NewColumn";
+                else
+                    inputLines[i] = inputLines[i] + Properties.Settings.Default.Delimiter;
+            }
+            File.WriteAllLines(PatchOpenFile, inputLines, Encoding.UTF8);
+            OpenCSVFile();
+        }
+
+
+
+
+
+        //Functions
+
+        private void SetLanguage ()
         {
             Menu_File.Header = ProgramSettings.Menu_File;
             Menu_New.Header = ProgramSettings.Menu_New;
@@ -282,18 +325,6 @@ namespace CSVXML_TemplateEditor
             Menu_AboutProgram.Header = ProgramSettings.Menu_AboutProgram;
             Menu_Documentation.Header = ProgramSettings.Menu_Documentation;
         }
-
-
-
-
-
-
-
-
-
-
-
-        //Functions
         private void OpenCSVFile()
         {
             try

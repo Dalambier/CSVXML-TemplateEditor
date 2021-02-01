@@ -39,8 +39,10 @@ namespace CSVXML_TemplateEditor
                 string RowTable = Properties.Settings.Default.Delimiter;
 
 
-                SaveFileDialog myDialog = new SaveFileDialog();
-                myDialog.Filter = "XML-" + ProgramSettings.Documents + " (*.xml)|*.xml|CSV-" + ProgramSettings.Documents + " (*.csv)|*.csv";
+                SaveFileDialog myDialog = new SaveFileDialog
+                {
+                    Filter = "XML-" + ProgramSettings.Documents + " (*.xml)|*.xml|CSV-" + ProgramSettings.Documents + " (*.csv)|*.csv"
+                };
                 if (myDialog.ShowDialog() == true)
                 {
                     FormXML.NewFilePatch = myDialog.FileName;

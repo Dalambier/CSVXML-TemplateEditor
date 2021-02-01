@@ -40,9 +40,9 @@
                       Background="Snow" FontSize="13" FontWeight="Bold" AlternatingRowBackground="#FFEAEAEA"
                       AlternationCount="1" HorizontalGridLinesBrush="#FF4F4F4F" Margin="0 20 0 0" VerticalGridLinesBrush="#FF4F4F4F" GridLinesVisibility="Vertical">
             <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Добавить столбец" Click="AddColumn"/>
-                    <MenuItem Header="Добавить строку" Click="AddRowMenu"/>
+                <ContextMenu FontSize="13" FontWeight="Bold">
+                    <MenuItem Header="Добавить столбец" Click="AddColumnContextMenu"/>
+                    <MenuItem Header="Добавить строку" Click="AddRowContextMenu"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
