@@ -18,7 +18,7 @@ namespace CSVXML_TemplateEditor
         {
             InitializeComponent();
             MinWidth = 300;
-            MinHeight = 150;
+            MinHeight = 200;
         }
 
         readonly SomeFunctions smf = new SomeFunctions();
@@ -29,6 +29,8 @@ namespace CSVXML_TemplateEditor
         public static string XmlCsvPatch;
         public static object CSVFileData;
         public static string MD5Text;
+
+        private string DragAndDropPatchFile;
 
 
         private void NewFile(object sender, RoutedEventArgs e)
@@ -120,36 +122,7 @@ namespace CSVXML_TemplateEditor
 
             if (myDialog.ShowDialog() == true)
             {
-                PatchOpenFile = myDialog.FileName;
-                ExtensionOpenFile = myDialog.FileName.Substring(myDialog.FileName.LastIndexOf('.'));
-                if (ExtensionOpenFile == ".xml")
-                {
-                    try
-                    {
-                        string PatchFileNotExtension = myDialog.FileName.Split('.')[0];
-                        XElement DataElement = XElement.Parse(File.ReadAllText(myDialog.FileName));
-                        var csvData = SomeFunctions.XML_CSV(DataElement, Properties.Settings.Default.Delimiter);
-                        XmlCsvPatch = PatchFileNotExtension + "(csv).csv";
-                        File.WriteAllText(XmlCsvPatch, "ThisTextWillThenBeColumns\n", Encoding.UTF8);
-                        File.AppendAllText(XmlCsvPatch, (string)csvData, Encoding.UTF8);
-                        CSVFileData = csvData;
-                        ConvertXML_CSV xmlcsv = new ConvertXML_CSV();
-                        xmlcsv.ShowDialog();
-                    }
-                    catch
-                    {
-                        smf.IncorrectFile();
-                    }
-                }
-                else if (ExtensionOpenFile == ".csv")
-                {
-                    try
-                    {
-                        string PatchFileNotExtension = myDialog.FileName.Split('.')[0];
-                        smf.CSV_XML(PatchOpenFile, PatchFileNotExtension + "(xml).xml", Properties.Settings.Default.MainElementXML, Properties.Settings.Default.SecondaryElementXML, Properties.Settings.Default.Delimiter[0]);
-                    }
-                    catch { }
-                }
+                ConvertFile(myDialog.FileName);
             }
         }
 
@@ -261,18 +234,56 @@ namespace CSVXML_TemplateEditor
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void OpenDragAndDrop(object sender, MouseButtonEventArgs e)
         {
-            SetLanguage();
+            ExtensionOpenFile = DragAndDropPatchFile.Substring(DragAndDropPatchFile.LastIndexOf('.'));
+            if (ExtensionOpenFile == ".xml")
+            {
+                PatchOpenFile = DragAndDropPatchFile;
+                OpenXMLFile();
+            }
+            else if (ExtensionOpenFile == ".csv")
+            {
+                PatchOpenFile = DragAndDropPatchFile;
+                OpenCSVFile();
+            }
+            else
+            {
+                DragAndDropField.Visibility = Visibility.Hidden;
+            }
+            DragAndDropField.Visibility = Visibility.Hidden;
+        }
+
+        private void ConvertFileDragAndDrop(object sender, MouseButtonEventArgs e)
+        {
+            ExtensionOpenFile = DragAndDropPatchFile.Substring(DragAndDropPatchFile.LastIndexOf('.'));
+            ConvertFile(DragAndDropPatchFile);
+            DragAndDropField.Visibility = Visibility.Hidden;
+        }
+
+        private void EncodingDragAndDrop(object sender, MouseButtonEventArgs e)
+        {
+
         }
 
 
 
 
 
-       
 
 
+
+
+
+
+
+
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetLanguage();
+        }
 
 
 
@@ -439,6 +450,46 @@ namespace CSVXML_TemplateEditor
         {
             if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.S)
                 AddColumn(true);
+        }
+
+        private void Window_Drop(object sender, DragEventArgs e)
+        {
+            DragAndDropField.Visibility = Visibility.Visible;
+            string[] patch = (string[])e.Data.GetData(DataFormats.FileDrop);
+            DragAndDropPatchFile = patch[0];
+        }
+
+        private void ConvertFile(string Patch)
+        {
+            ExtensionOpenFile = Patch.Substring(Patch.LastIndexOf('.'));
+            if (ExtensionOpenFile == ".xml")
+            {
+                try
+                {
+                    string PatchFileNotExtension = Patch.Split('.')[0];
+                    XElement DataElement = XElement.Parse(File.ReadAllText(Patch));
+                    var csvData = SomeFunctions.XML_CSV(DataElement, Properties.Settings.Default.Delimiter);
+                    XmlCsvPatch = PatchFileNotExtension + "(csv).csv";
+                    File.WriteAllText(XmlCsvPatch, "ThisTextWillThenBeColumns\n", Encoding.UTF8);
+                    File.AppendAllText(XmlCsvPatch, (string)csvData, Encoding.UTF8);
+                    CSVFileData = csvData;
+                    ConvertXML_CSV xmlcsv = new ConvertXML_CSV();
+                    xmlcsv.ShowDialog();
+                }
+                catch
+                {
+                    smf.IncorrectFile();
+                }
+            }
+            else if (ExtensionOpenFile == ".csv")
+            {
+                try
+                {
+                    string PatchFileNotExtension = Patch.Split('.')[0];
+                    smf.CSV_XML(PatchOpenFile, PatchFileNotExtension + "(xml).xml", Properties.Settings.Default.MainElementXML, Properties.Settings.Default.SecondaryElementXML, Properties.Settings.Default.Delimiter[0]);
+                }
+                catch { }
+            }
         }
     }
 }

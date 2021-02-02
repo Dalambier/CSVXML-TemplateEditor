@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSVXML_TemplateEditor"
         mc:Ignorable="d"
-        Title="FormNewColumn" Height="250" Width="500">
+        Title="FormNewColumn" Height="250" Width="500" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Window.Background>
         <ImageBrush ImageSource="images/qwe.jpg" x:Name="IB" Stretch="UniformToFill"/>
     </Window.Background>

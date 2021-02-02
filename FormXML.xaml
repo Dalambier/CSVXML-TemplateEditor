@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSVXML_TemplateEditor"
         mc:Ignorable="d"
-        Title="CSVXML" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" AllowDrop="True" Closed="Window_Closed" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
+        Title="CSVXML" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="images/Icon.png" AllowDrop="True" Closed="Window_Closed" Loaded="Window_Loaded" KeyDown="Window_KeyDown" Drop="Window_Drop" >
     <Grid>
         <Menu VerticalAlignment="Top" FontSize="13" FontWeight="Bold" >
             <MenuItem x:Name="Menu_File" Header="File">
@@ -47,5 +47,31 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
+        <Border x:Name="DragAndDropField" Background="Black" Opacity="0.9" Visibility="Collapsed">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0"  Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="OpenDragAndDrop">
+                    <TextBlock  Text="Open" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                </Border>
+                <Border  Grid.Row="1"  Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="ConvertFileDragAndDrop">
+                    <TextBlock Text="Convert" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                </Border>
+                <Border  Grid.Row="2"  Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="EncodingDragAndDrop">
+                    <TextBlock Text="Encoding" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                </Border>
+                <Border  Grid.Row="3"  Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
+                    <TextBlock Text="Decoding" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                </Border>
+                <Border  Grid.Row="4"  Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
+                    <TextBlock Text="MD5 Hash" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                </Border>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
