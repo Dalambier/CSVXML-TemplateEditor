@@ -1,0 +1,34 @@
+﻿<Window x:Class="CSVXML_TemplateEditor.FormNewColumn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSVXML_TemplateEditor"
+        mc:Ignorable="d"
+        Title="FormNewColumn" Height="250" Width="500">
+    <Window.Background>
+        <ImageBrush ImageSource="images/qwe.jpg" x:Name="IB" Stretch="UniformToFill"/>
+    </Window.Background>
+    <Grid>
+        <Border Margin="20" Background="Snow" VerticalAlignment="Center" Padding="15" CornerRadius="10">
+            <Border.Effect>
+                <DropShadowEffect></DropShadowEffect>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="EnterColumnName" Grid.Row="0" Grid.ColumnSpan="2" Text="Enter column name" HorizontalAlignment="Center" Margin="0 0 0 10" FontSize="30" FontWeight="Bold" Loaded="EnterColumnName_Loaded"/>
+                <TextBox x:Name="TextFieldColumn" FontSize="15" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Background="White"></TextBox>
+                <Border x:Name="NextColumnButton" Grid.Row="1" Grid.Column="1" Height="23" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="CreateColumn">
+                    <TextBlock x:Name="EnterButtonText" Text="Enter" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

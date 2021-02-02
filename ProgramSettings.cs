@@ -57,6 +57,8 @@
         public static string TheValuesDontMatch;
 
 
+        public static string EnterColumnName;
+        public static string ZeroField;
 
         public void LanguageChecked()
         {
@@ -115,6 +117,8 @@
                 EnterColumnsForCsvFile = "Enter columns for csv file";
                 TheValuesMatch = "The values match";
                 TheValuesDontMatch = "The values don't match";
+                EnterColumnName = "Enter column name";
+                ZeroField = "The field cannot be empty";
             }
             else if (Properties.Settings.Default.Language == "Russian")
             {
@@ -172,6 +176,8 @@
                 EnterColumnsForCsvFile = "Введите столбцы для csv-файла";
                 TheValuesMatch = "Значения совпадают";
                 TheValuesDontMatch = "Значения не совпадают";
+                EnterColumnName = "Введите название столбца";
+                ZeroField = "Поле не может быть пустым";
             }
         }
         public void SettingsIsNullIsNull()

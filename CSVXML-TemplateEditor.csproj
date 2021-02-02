@@ -63,6 +63,9 @@
     <Compile Include="ConvertXML_CSV.xaml.cs">
       <DependentUpon>ConvertXML_CSV.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FormNewColumn.xaml.cs">
+      <DependentUpon>FormNewColumn.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FormNewFile.xaml.cs">
       <DependentUpon>FormNewFile.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,10 @@
     </Compile>
     <Compile Include="SomeFunctions.cs" />
     <Page Include="ConvertXML_CSV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormNewColumn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

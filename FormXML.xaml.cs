@@ -251,23 +251,13 @@ namespace CSVXML_TemplateEditor
 
         private void AddColumnContextMenu(object sender, RoutedEventArgs e)
         {
-            if (ExtensionOpenFile == ".csv")
+            if (ExtensionOpenFile == ".xml")
             {
-
-                var inputLines = File.ReadAllLines(PatchOpenFile, Encoding.UTF8);
-                for (int i = 0; i < inputLines.Length; i++)
-                {
-                    if (i == 0)
-                        inputLines[i] = inputLines[i] + Properties.Settings.Default.Delimiter + "NewColumn";
-                    else
-                        inputLines[i] = inputLines[i] + Properties.Settings.Default.Delimiter;
-                }
-                File.WriteAllLines(PatchOpenFile, inputLines, Encoding.UTF8);
-                OpenCSVFile();
+                AddColumn(false);
             }
-            else if (ExtensionOpenFile == ".xml")
+            else if(ExtensionOpenFile == ".csv")
             {
-
+                AddColumn(true);
             }
         }
 
@@ -280,22 +270,7 @@ namespace CSVXML_TemplateEditor
 
 
 
-        private void AddColumn(bool ItsCSV)
-        {
-
-
-
-            var inputLines = File.ReadAllLines(PatchOpenFile, Encoding.UTF8);
-            for (int i = 0; i < inputLines.Length; i++)
-            {
-                if (i == 0)
-                    inputLines[i] = inputLines[i] + Properties.Settings.Default.Delimiter + "NewColumn";
-                else
-                    inputLines[i] = inputLines[i] + Properties.Settings.Default.Delimiter;
-            }
-            File.WriteAllLines(PatchOpenFile, inputLines, Encoding.UTF8);
-            OpenCSVFile();
-        }
+       
 
 
 
@@ -303,7 +278,7 @@ namespace CSVXML_TemplateEditor
 
         //Functions
 
-        private void SetLanguage ()
+        private void SetLanguage()
         {
             Menu_File.Header = ProgramSettings.Menu_File;
             Menu_New.Header = ProgramSettings.Menu_New;
@@ -325,6 +300,7 @@ namespace CSVXML_TemplateEditor
             Menu_AboutProgram.Header = ProgramSettings.Menu_AboutProgram;
             Menu_Documentation.Header = ProgramSettings.Menu_Documentation;
         }
+
         private void OpenCSVFile()
         {
             try
@@ -414,6 +390,55 @@ namespace CSVXML_TemplateEditor
                 File.Delete(Filepatch);
                 OpenXMLFile();
             }
+        }
+
+        private void AddColumn(bool ItsCSV)
+        {
+            FormNewColumn frmclm = new FormNewColumn();
+            frmclm.ShowDialog();
+
+            string Filepatch;
+            if (ItsCSV == true)
+            {
+                SaveCSVFile(false);
+                Filepatch = PatchOpenFile;
+            }
+            else
+            {
+                XMLTable.SelectAllCells();
+                XMLTable.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+                ApplicationCommands.Copy.Execute(null, XMLTable);
+                XMLTable.UnselectAll();
+                Filepatch = "tempfile.csv";
+                smf.TableToCSV(Filepatch, Properties.Settings.Default.Delimiter);
+            }
+
+
+            var inputLines = File.ReadAllLines(Filepatch, Encoding.UTF8);
+            for (int i = 0; i < inputLines.Length; i++)
+            {
+                if (i == 0)
+                    inputLines[i] = inputLines[i] + Properties.Settings.Default.Delimiter + frmclm.ShowColumn();
+                else
+                    inputLines[i] = inputLines[i] + Properties.Settings.Default.Delimiter;
+            }
+            File.WriteAllLines(Filepatch, inputLines, Encoding.UTF8);
+
+
+            if (ItsCSV == true)
+                OpenCSVFile();
+            else
+            {
+                smf.CSV_XML(Filepatch, PatchOpenFile, Properties.Settings.Default.MainElementXML, Properties.Settings.Default.SecondaryElementXML, Properties.Settings.Default.Delimiter[0]);
+                File.Delete(Filepatch);
+                OpenXMLFile();
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.S)
+                AddColumn(true);
         }
     }
 }

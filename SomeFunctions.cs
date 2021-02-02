@@ -22,6 +22,7 @@ namespace CSVXML_TemplateEditor
                 ClipBoardTextisClear = false;
             }
         }
+
         public void PasteToClipBoard()
         {
             if (ClipBoardTextisClear == false)
@@ -31,6 +32,7 @@ namespace CSVXML_TemplateEditor
                 ClipBoardTextisClear = true;
             }
         }
+
         public void CSV_XML(string patch, string XMLFileName, string MainElement, string SecondaryElement, char Delimiter)
         {
             try
@@ -65,6 +67,7 @@ namespace CSVXML_TemplateEditor
                 IncorrectFile();
             }
         }
+
         public void TableToCSV(string patch, string Delimiter)
         {
             string ResultClipBoardCopy = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
@@ -81,6 +84,7 @@ namespace CSVXML_TemplateEditor
                 File.WriteAllText(patch, text, UnicodeEncoding.UTF8);
             }
         }
+
         public static object XML_CSV(XElement DataElement, string Delimiter)
         {
             StringBuilder sb = new StringBuilder();
@@ -90,9 +94,12 @@ namespace CSVXML_TemplateEditor
             sb.Append(string.Join(Environment.NewLine, lines));
             return sb.ToString();
         }
-        public  void IncorrectFile()
+
+        public void IncorrectFile()
         {
             MessageBox.Show(ProgramSettings.IncorrerctFile, ProgramSettings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+
     }
 }
