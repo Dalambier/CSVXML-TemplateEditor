@@ -12,8 +12,8 @@
                 <MenuItem x:Name="Menu_New" Header="New" InputGestureText="Ctrl+N" Click="NewFile"></MenuItem>
                 <MenuItem x:Name="Menu_Open" Header="Open" InputGestureText="Ctrl+O" Click="OpenFile"></MenuItem>
                 <MenuItem x:Name="Menu_Save" Header="Save" InputGestureText="Ctrl+S" Click="SaveFile"></MenuItem>
-                <MenuItem x:Name="Menu_SaveAs" Header="Save as" InputGestureText="Ctrl+Shift+S" Click="SaveAsFile"></MenuItem>
-                <MenuItem x:Name="Menu_Convert" Header="Convert" InputGestureText="Ctrl+Shift+C" Click="ConvertFile"></MenuItem>
+                <MenuItem x:Name="Menu_SaveAs" Header="Save as" Click="SaveAsFile"></MenuItem>
+                <MenuItem x:Name="Menu_Convert" Header="Convert" Click="ConvertFile"></MenuItem>
                 <Separator />
                 <MenuItem x:Name="Menu_Exit" Header="Exit" InputGestureText="Alt+F4" Click="ExitProrgam"></MenuItem>
             </MenuItem>
@@ -32,7 +32,7 @@
             </MenuItem>
             <MenuItem x:Name="Menu_Help" Header="Help" >
                 <MenuItem x:Name="Menu_Github" Header="Github Page" Click="GitHubPage" IsEnabled="False"></MenuItem>
-                <MenuItem x:Name="Menu_AboutProgram" InputGestureText="F2" Header="Author/About program"></MenuItem>
+                <MenuItem x:Name="Menu_AboutProgram" InputGestureText="F2" Header="Author/About program" Click="AboutProgram"></MenuItem>
                 <MenuItem x:Name="Menu_Documentation" InputGestureText="F1" Header="Documentation"></MenuItem>
             </MenuItem>
         </Menu>
@@ -42,8 +42,8 @@
                       AlternationCount="1" HorizontalGridLinesBrush="#FF4F4F4F" Margin="0 20 0 0" VerticalGridLinesBrush="#FF4F4F4F" GridLinesVisibility="Vertical">
             <DataGrid.ContextMenu>
                 <ContextMenu FontSize="13" FontWeight="Bold">
-                    <MenuItem Header="Добавить столбец" Click="AddColumnContextMenu"/>
-                    <MenuItem Header="Добавить строку" Click="AddRowContextMenu"/>
+                    <MenuItem x:Name="ContextMenuAddColumn" Header="Добавить столбец" Click="AddColumnContextMenu"/>
+                    <MenuItem x:Name="ContextMenuAddRow" Header="Добавить строку" Click="AddRowContextMenu"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
@@ -52,24 +52,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0"  Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="OpenDragAndDrop">
-                    <TextBlock  Text="Open" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                    <TextBlock x:Name="OpenContextMenuText"  Text="Open" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
                 </Border>
                 <Border  Grid.Row="1"  Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="ConvertFileDragAndDrop">
-                    <TextBlock Text="Convert" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
-                </Border>
-                <Border  Grid.Row="2"  Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="EncodingDragAndDrop">
-                    <TextBlock Text="Encoding" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
-                </Border>
-                <Border  Grid.Row="3"  Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
-                    <TextBlock Text="Decoding" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
-                </Border>
-                <Border  Grid.Row="4"  Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
-                    <TextBlock Text="MD5 Hash" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                    <TextBlock x:Name="ConvertContextMenuText" Text="Convert" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" IsEnabled="False"></TextBlock>
                 </Border>
             </Grid>
         </Border>

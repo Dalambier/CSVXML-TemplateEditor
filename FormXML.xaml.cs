@@ -35,45 +35,12 @@ namespace CSVXML_TemplateEditor
 
         private void NewFile(object sender, RoutedEventArgs e)
         {
-            FormNewFile newfile = new FormNewFile();
-            newfile.ShowDialog();
-            if (NewFilePatch != null)
-            {
-                PatchOpenFile = NewFilePatch;
-                NewFilePatch = null;
-                ExtensionOpenFile = PatchOpenFile.Substring(PatchOpenFile.LastIndexOf('.'));
-                if (ExtensionOpenFile == ".xml")
-                {
-                    OpenXMLFile();
-                }
-                else if (ExtensionOpenFile == ".csv")
-                {
-                    OpenCSVFile();
-                }
-            }
-
+            NewFile();
         }
 
         private void OpenFile(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog myDialog = new OpenFileDialog
-            {
-                Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv"
-            };
-
-            if (myDialog.ShowDialog() == true)
-            {
-                PatchOpenFile = myDialog.FileName;
-                ExtensionOpenFile = myDialog.FileName.Substring(myDialog.FileName.LastIndexOf('.'));
-                if (ExtensionOpenFile == ".xml")
-                {
-                    OpenXMLFile();
-                }
-                else if (ExtensionOpenFile == ".csv")
-                {
-                    OpenCSVFile();
-                }
-            }
+            OpenFile();
         }
 
         private void SaveFile(object sender, RoutedEventArgs e)
@@ -261,34 +228,19 @@ namespace CSVXML_TemplateEditor
             DragAndDropField.Visibility = Visibility.Hidden;
         }
 
-        private void EncodingDragAndDrop(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             SetLanguage();
         }
 
+        private void AboutProgram(object sender, RoutedEventArgs e)
+        {
+            FormAboutProgram AbtFrm = new FormAboutProgram();
+            AbtFrm.Show();
+        }
 
 
         //Functions
-
         private void SetLanguage()
         {
             Menu_File.Header = ProgramSettings.Menu_File;
@@ -304,12 +256,61 @@ namespace CSVXML_TemplateEditor
             Menu_Encoding.Header = ProgramSettings.Menu_Encoding;
             Menu_Decoding.Header = ProgramSettings.Menu_Decoding;
             Menu_AddColumn.Header = ProgramSettings.Menu_AddColumn;
+            Menu_AddRow.Header = ProgramSettings.AddRow;
             Menu_Settings.Header = ProgramSettings.Menu_Settings;
 
             Menu_Help.Header = ProgramSettings.Menu_Help;
             Menu_Github.Header = ProgramSettings.Menu_GithubPage;
             Menu_AboutProgram.Header = ProgramSettings.Menu_AboutProgram;
             Menu_Documentation.Header = ProgramSettings.Menu_Documentation;
+
+            OpenContextMenuText.Text = ProgramSettings.Menu_Open;
+            ConvertContextMenuText.Text = ProgramSettings.Menu_Convert;
+
+            ContextMenuAddRow.Header = ProgramSettings.AddRow;
+            ContextMenuAddColumn.Header = ProgramSettings.Menu_AddColumn;
+        }
+
+        private void NewFile()
+        {
+            FormNewFile newfile = new FormNewFile();
+            newfile.ShowDialog();
+            if (NewFilePatch != null)
+            {
+                PatchOpenFile = NewFilePatch;
+                NewFilePatch = null;
+                ExtensionOpenFile = PatchOpenFile.Substring(PatchOpenFile.LastIndexOf('.'));
+                if (ExtensionOpenFile == ".xml")
+                {
+                    OpenXMLFile();
+                }
+                else if (ExtensionOpenFile == ".csv")
+                {
+                    OpenCSVFile();
+                }
+            }
+        }
+
+        private void OpenFile()
+        {
+            OpenFileDialog myDialog = new OpenFileDialog
+            {
+                Filter = ProgramSettings.Documents + "(*.xml;*.csv)|*.XML;*.csv"
+            };
+
+            if (myDialog.ShowDialog() == true)
+            {
+                PatchOpenFile = myDialog.FileName;
+                ExtensionOpenFile = myDialog.FileName.Substring(myDialog.FileName.LastIndexOf('.'));
+                if (ExtensionOpenFile == ".xml")
+                {
+                    OpenXMLFile();
+                }
+                else if (ExtensionOpenFile == ".csv")
+                {
+                    OpenCSVFile();
+                }
+            }
         }
 
         private void OpenCSVFile()
@@ -448,8 +449,54 @@ namespace CSVXML_TemplateEditor
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.N)
+                NewFile();
+
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.O)
+                OpenFile();
+
             if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.S)
+            {
+                smf.CheckClipBoard();
+                if (ExtensionOpenFile == ".xml")
+                {
+                    SaveXMLFile(false);
+                }
+                else if (ExtensionOpenFile == ".csv")
+                {
+                    SaveCSVFile(false);
+                }
+                smf.PasteToClipBoard();
+            }
+
+
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.K)
                 AddColumn(true);
+
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.L)
+            {
+                if (ExtensionOpenFile == ".csv")
+                {
+                    AddRow(true);
+                }
+                else if (ExtensionOpenFile == ".xml")
+                {
+                    AddRow(false);
+                }
+            }
+
+            if (e.Key == Key.F3)
+            {
+                FormSettings settingsfrm = new FormSettings();
+                settingsfrm.ShowDialog();
+                SetLanguage();
+            }
+
+            if (e.Key == Key.F2)
+            {
+                FormAboutProgram abtfrm = new FormAboutProgram();
+                abtfrm.Show();
+            }
         }
 
         private void Window_Drop(object sender, DragEventArgs e)
@@ -491,5 +538,7 @@ namespace CSVXML_TemplateEditor
                 catch { }
             }
         }
+
+       
     }
 }

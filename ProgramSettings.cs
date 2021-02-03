@@ -46,6 +46,7 @@
         public static string Dont1Column;
         public static string EnterText;
         public static string OnColumn;
+        public static string AddRow;
 
 
         public static string Documents;
@@ -59,6 +60,14 @@
 
         public static string EnterColumnName;
         public static string ZeroField;
+
+
+        public static string Developer;
+        public static string Teacher;
+        public static string Version;
+        public static string Developer_Name;
+        public static string Teacher_Name;
+
 
         public void LanguageChecked()
         {
@@ -119,6 +128,14 @@
                 TheValuesDontMatch = "The values don't match";
                 EnterColumnName = "Enter column name";
                 ZeroField = "The field cannot be empty";
+                AddRow = "Add row";
+
+                //About
+                Developer = "Developer";
+                Teacher = "Teacher";
+                Version = "Version";
+                Developer_Name = "Grishin Danil Vitalievich";
+                Teacher_Name = "Sedov Artem Viktorovich";
             }
             else if (Properties.Settings.Default.Language == "Russian")
             {
@@ -178,6 +195,14 @@
                 TheValuesDontMatch = "Значения не совпадают";
                 EnterColumnName = "Введите название столбца";
                 ZeroField = "Поле не может быть пустым";
+                AddRow = "Добавить строку";
+
+                //About
+                Developer = "Разработчик";
+                Teacher = "Преподаватель";
+                Version = "Версия";
+                Developer_Name = "Гришин Данил Витальевич";
+                Teacher_Name = "Седов Артём Викторович";
             }
         }
         public void SettingsIsNullIsNull()
