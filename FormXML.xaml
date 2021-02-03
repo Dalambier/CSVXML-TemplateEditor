@@ -33,7 +33,7 @@
             <MenuItem x:Name="Menu_Help" Header="Help" >
                 <MenuItem x:Name="Menu_Github" Header="Github Page" Click="GitHubPage" IsEnabled="False"></MenuItem>
                 <MenuItem x:Name="Menu_AboutProgram" InputGestureText="F2" Header="Author/About program" Click="AboutProgram"></MenuItem>
-                <MenuItem x:Name="Menu_Documentation" InputGestureText="F1" Header="Documentation"></MenuItem>
+                <MenuItem x:Name="Menu_Documentation" InputGestureText="F1" Header="Documentation" Click="OpenDocumntation"></MenuItem>
             </MenuItem>
         </Menu>
         <DataGrid x:Name="XMLTable" CanUserDeleteRows="True" CanUserResizeRows="False" CanUserAddRows="False"

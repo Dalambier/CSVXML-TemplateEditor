@@ -239,6 +239,12 @@ namespace CSVXML_TemplateEditor
             AbtFrm.Show();
         }
 
+        private void OpenDocumntation(object sender, RoutedEventArgs e)
+        {
+            FormDocumentation document = new FormDocumentation();
+            document.Show();
+        }
+
 
         //Functions
         private void SetLanguage()
@@ -538,7 +544,5 @@ namespace CSVXML_TemplateEditor
                 catch { }
             }
         }
-
-       
     }
 }
