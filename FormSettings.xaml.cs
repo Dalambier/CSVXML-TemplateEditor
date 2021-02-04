@@ -17,8 +17,8 @@ namespace CSVXML_TemplateEditor
         {
             Properties.Settings.Default.Language = "English";
             Properties.Settings.Default.Delimiter = ";";
-            Properties.Settings.Default.MainElementXML = "user";
-            Properties.Settings.Default.SecondaryElementXML = "users";
+            Properties.Settings.Default.MainElementXML = "users";
+            Properties.Settings.Default.SecondaryElementXML = "user";
             Properties.Settings.Default.Save();
             ProgramSettings lg = new ProgramSettings();
             lg.LanguageChecked();

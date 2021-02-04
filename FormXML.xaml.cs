@@ -189,13 +189,37 @@ namespace CSVXML_TemplateEditor
             }
         }
 
+        private void AddRowMenu(object sender, RoutedEventArgs e)
+        {
+            if (ExtensionOpenFile == ".csv")
+            {
+                AddRow(true);
+            }
+            else if (ExtensionOpenFile == ".xml")
+            {
+                AddRow(false);
+            }
+        }
+
+        private void AddColumnwMenu(object sender, RoutedEventArgs e)
+        {
+            if (ExtensionOpenFile == ".csv")
+            {
+                AddColumn(true);
+            }
+            else if (ExtensionOpenFile == ".xml")
+            {
+                AddColumn(false);
+            }
+        }
+
         private void AddColumnContextMenu(object sender, RoutedEventArgs e)
         {
             if (ExtensionOpenFile == ".xml")
             {
                 AddColumn(false);
             }
-            else if(ExtensionOpenFile == ".csv")
+            else if (ExtensionOpenFile == ".csv")
             {
                 AddColumn(true);
             }
@@ -477,7 +501,17 @@ namespace CSVXML_TemplateEditor
 
 
             if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.K)
-                AddColumn(true);
+            {
+                if (ExtensionOpenFile == ".csv")
+                {
+                    AddColumn(true);
+                }
+                else if (ExtensionOpenFile == ".xml")
+                {
+                    AddColumn(false);
+                }
+            }
+
 
             if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.L)
             {
@@ -491,6 +525,7 @@ namespace CSVXML_TemplateEditor
                 }
             }
 
+
             if (e.Key == Key.F3)
             {
                 FormSettings settingsfrm = new FormSettings();
@@ -498,10 +533,17 @@ namespace CSVXML_TemplateEditor
                 SetLanguage();
             }
 
+
             if (e.Key == Key.F2)
             {
                 FormAboutProgram abtfrm = new FormAboutProgram();
                 abtfrm.Show();
+            }
+
+            if (e.Key == Key.F1)
+            {
+                FormDocumentation document = new FormDocumentation();
+                document.Show();
             }
         }
 

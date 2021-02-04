@@ -69,6 +69,22 @@
         public static string Teacher_Name;
 
 
+        public static string Document_introduction;
+        public static string Document_Open;
+        public static string Document_Save;
+        public static string Document_Crypt;
+        public static string Document_Edit;
+        public static string Document_Convert;
+        public static string Document_Settings;
+        public static string Document_introduction_text;
+        public static string Document_Open_text;
+        public static string Document_Save_text;
+        public static string Document_Crypt_text;
+        public static string Document_Edit_text;
+        public static string Document_Convert_text;
+        public static string Document_Settings_text;
+
+
         public void LanguageChecked()
         {
             if (Properties.Settings.Default.Language == "English")
@@ -136,6 +152,31 @@
                 Version = "Version";
                 Developer_Name = "Grishin Danil Vitalievich";
                 Teacher_Name = "Sedov Artem Viktorovich";
+
+                //Document
+                Document_introduction = "Introduction";
+                Document_Open = "Open";
+                Document_Save = "Save";
+                Document_Crypt = "Crypt";
+                Document_Edit = "Edit";
+                Document_Convert = "Convert";
+                Document_Settings = "Settings";
+                Document_introduction_text = "";
+                Document_Open_text = "Introduction" +
+                "\n     This software is designed to quickly edit / convert CSV and XML files, change the delimiter in CSV files, change the names of XML elements, and other operations." +
+                "\n     If there is a low performance of the application, you need to increase the amount of RAM." +
+                "\n     When processing (converting, saving, opening, encrypting) large files, it is not recommended to use a computer to avoid loss of file processing speed and various errors.";
+                Document_Save_text = "Open" +
+                "\n     In order to work with a file, you need to either create it or open it." +
+                "\n     The file is created by pressing Ctrl+N or by clicking on [NEW] in the top menu. You need to write the column names for the file. It is worth remembering that it is not desirable to name the column names with numbers and create less than two columns for the file.." +
+                "\n     Opening a file allows you to open a file in the form of a table in the program to view and change information in it. To open it, you must either transfer the desired file to the program using the Drag system&Drop and click on the [Open] button, or click in the top menu [Open]" +
+                "\n     It is worth remembering that to open a CSV file, you need to set the correct delimiter in the settings to read the file correctly.";
+                Document_Crypt_text = "Crypt" +
+                "\n     The file can be encrypted and decrypted using base64 technology by selecting in the menu in the [Edit] tab next [encryption] and in base64 you can select the desired action." +
+                "\n     You can check the hash of the file by going to the [Edit] tab and selecting MD5 Hash File. After that, a form will open in which the hash of the file will be written and you can compare it with another hash that the user has. The program will write whether the hash sums match or not..";
+                Document_Edit_text = "";
+                Document_Convert_text = "";
+                Document_Settings_text = "";
             }
             else if (Properties.Settings.Default.Language == "Russian")
             {
@@ -203,6 +244,46 @@
                 Version = "Версия";
                 Developer_Name = "Гришин Данил Витальевич";
                 Teacher_Name = "Седов Артём Викторович";
+
+                //Document
+                Document_introduction = "Введение";
+                Document_Open = "Открытие";
+                Document_Save = "Сохранение";
+                Document_Crypt = "Шифрование";
+                Document_Edit = "Редактирование";
+                Document_Convert = "Конвертация";
+                Document_Settings = "Настройки";
+                Document_introduction_text = "Введение" +
+                "\n     Данное программное обеспечение предназначено для быстрого редактирования/конвертирования SCV и XML файлов, изменения делимитера в CSV файлах, изменения названий XML-элементов и других операций." +
+                "\n     При возникновении низкой работоспособности приложения, необходимо повысить объём оперативной памяти." +
+                "\n     Во время обработки (конвертации, сохранения, открытия, шифрования) больших файлов, не рекомендуется использовать компьютер, для избежания потери скорости обработки файла и различных ошибок.";
+                Document_Open_text = "Открытие" +
+                "\n     Для того чтобы работать с файлом, его нужно либо создать, либо открыть." +
+                "\n     Создание файла происходит с помощью нажатия клавиши Ctrl+N или нажатия на [Создать] в верхнем меню. Необходимо написать названия столбцов для файла. Стоит помнить, что названия столбцов не желательно называть цифрами и создавть менее двух столбцов для файла." +
+                "\n     Открытие файла позволяет открыть файл в виде таблицы в программе для просмотра и изменения в ней информации. Для открытия необходимо либо перенести нужный файл в программу с помощью системы Drag&Drop и нажать на кнопку [Открыть], либо нажать в верхнем меню [Открыть]" +
+                "\n     Стоит помнить что для открытия CSV-файла, необходимо задать в настройках правильный делимитер для корректного чтения файла.";
+                Document_Save_text = "Сохранение" +
+                "\n     После работы с файлом, его можно сохранить на свой носитель информации. Программа включает в себя 2 вида сохранения файла -[Сохранение как] и [Сохранение]." +
+                "\n     [Сохранение] работает после нажатия на сочетание клавиш Ctrl+S или нажатие на клавишу [Сохранить] в главном меню. В этом случае файл, который был открыт -перезаписывается. В данном случае расширение остаётся таким же, каким и было." +
+                "\n     [Сохранение как] позволяет не менять открытый файл, сохраняя изменения в новый, в данном случае можно задать расширения для сохраняемого файла. Для совершения данной операции, необходимо нажать на [Сохранить как] в верхнем меню." +
+                "\n     Можно открыть файл и в настройках поменять делимитер и XML-элементы и сохранить файл с новыми параметрами.";
+                Document_Crypt_text = "Шифрование" +
+                "\n     Файл можно зашифровать и дешифровать с помощью технологии base64, выбрав в меню в вкладке [Правка] дальше [шифрование] и в base64 можно выбрать нужное действие." +
+                "\n     Можно проверить хеш файла, зайдя в вкладку [Правка] и выбрав MD5Hash File. После чего откровется форма, в которой будет написан хеш файла и можно будет сравнить с другим хешем, который есть у пользователя. Программа напишет -совпадают ли хеш-суммы или нет.";
+                Document_Edit_text = "Редактирование" +
+                "\n     После успешного открытия файла, открывается возможно взаимодействовать с данными файла." +
+                "\n     Возможности: Добавить строку нажатием правой клавишей мыши на таблицу, вызвав контексное меню, из которого можно выбрать операцию [Добавить строку], так же можно добавить столбец, из этого же контекстного меню, стоит помнить, что названия столбцов должны быть желательно без цифр. Данные действия так же доступны из меню, во вкладке [Правка]." +
+                "\n     Для удаления строки, необходимо кликнуть на элемент ненужной строки и нажать на клавиатуре клавишу [Delete]" +
+                "\n     Содержимое ячеек в таблице можно редактировать, кликнув по элементу и написав нужное значение.";
+                Document_Convert_text = "Конвертация" +
+                "\n     Есть возможность быстрой конвертации файла, без взаимодействия с визуальной таблицей. Для данного действия необходимо перетащить файл в программу системой Drag&Drop или нажать на [Конвертировать] в меню программы." +
+                "\n     После конвертации, рядом с файлом появляется другой с файл с подписью в какой формат был сконвертирован." +
+                "\n     При конвертации из XML в CSV, необходимо указать названия столбцов для нового файла, на основе показанных данных с таблице в форме.";
+                Document_Settings_text = "Настройки" +
+                "\n     Чтобы изменить настройки данного ПО, пользователю неоьбходимо зайти в вкладку [Правка], там же нажать на [Настройки]." +
+                "\n     В настройках можно менять язык ПО на английский и русский, изменять делимитер для CSV файлов и менять названия второстепенного и основного элементов XML. При наведении на поля ввода, показываются подсказки." +
+                "\n     Если например в настройках указан делимитер [;], но пользователь пытается открыть CSV-файл с делимитером [,], программа не сможет читать файл." +
+                "\n     Можно открыть файл и поменять делимитер в настрйоках и сохранить для изменения всех делимитеров в файле.";
             }
         }
         public void SettingsIsNullIsNull()

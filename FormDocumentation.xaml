@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSVXML_TemplateEditor"
         mc:Ignorable="d"
-        Title="Documentation" Height="460" Width="800">
+        Title="Documentation" Height="460" Width="700" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Background>
         <ImageBrush ImageSource="images/qwe.jpg" x:Name="IB" Stretch="UniformToFill"/>
     </Window.Background>
@@ -23,31 +23,31 @@
                     <RowDefinition Height="55"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="ColumTitle" Grid.Row="0" Grid.ColumnSpan="2" Text="Документация" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"/>
+                <TextBlock x:Name="DocTitle" Grid.Row="0" Grid.ColumnSpan="2" Text="Документация" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"/>
                 <StackPanel Grid.Row="1" Grid.Column="0">
                     <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="introduction">
-                        <TextBlock Text="Введение" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                        <TextBlock x:Name="Title_intdrod" Text="Введение" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
                     </Border>
-                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
-                        <TextBlock Text="Открытие" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="Open">
+                        <TextBlock x:Name="Title_Open" Text="Открытие" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
                     </Border>
-                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
-                        <TextBlock Text="Сохранение" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="Save">
+                        <TextBlock x:Name="Title_Save" Text="Сохранение" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
                     </Border>
-                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
-                        <TextBlock Text="Редактирование" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="Edit">
+                        <TextBlock x:Name="Title_Edit" Text="Редактирование" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
                     </Border>
-                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
-                        <TextBlock Text="Конвертация" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="Convert">
+                        <TextBlock x:Name="Title_Convert" Text="Конвертация" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
                     </Border>
-                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
-                        <TextBlock Text="Шифрование" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="Crypt">
+                        <TextBlock x:Name="Title_Crypt" Text="Шифрование" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
                     </Border>
-                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand">
-                        <TextBlock Text="Настройки " Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
+                    <Border Height="30" Background="#FF0F111A" CornerRadius="6" Margin="5" Cursor="Hand" MouseDown="Settings">
+                        <TextBlock x:Name="Title_Settings" Text="Настройки " Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" IsEnabled="False"></TextBlock>
                     </Border>
                 </StackPanel>
-                <TextBox x:Name="Field" Margin="10" FontSize="15" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Background="White"></TextBox>
+                <TextBox x:Name="Field" Margin="10" FontSize="15" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" IsReadOnly="True" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Background="White"></TextBox>
             </Grid>
         </Border>
     </Grid>

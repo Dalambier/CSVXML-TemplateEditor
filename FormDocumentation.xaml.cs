@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CSVXML_TemplateEditor
 {
@@ -22,16 +11,58 @@ namespace CSVXML_TemplateEditor
         public FormDocumentation()
         {
             InitializeComponent();
-            MinHeight = 470;
-            MinWidth = 500;
         }
 
         private void introduction(object sender, MouseButtonEventArgs e)
         {
-            Field.Text = "Введение" +
-                "\nДанное программное обеспечение предназначено для быстрого редактирования/конвертирования SCV и XML файлов, изменения делимитера в CSV файлах, изменения названий XML-элементов и других операций." +
-                "\nПри возникновении низкой работоспособности приложения, необходимо повысить объём оперативной памяти." +
-                "\nВо время обработки (конвертации, сохранения, открытия, шифрования) больших файлов, не рекомендуется использовать компьютер, для избежания потери скорости обработки файла и различных ошибок.";
+            Field.Text = ProgramSettings.Document_introduction_text;
+        }
+
+        private void Open(object sender, MouseButtonEventArgs e)
+        {
+            Field.Text = ProgramSettings.Document_Open_text;
+        }
+
+        private void Save(object sender, MouseButtonEventArgs e)
+        {
+            Field.Text = ProgramSettings.Document_Save_text;
+        }
+
+        private void Edit(object sender, MouseButtonEventArgs e)
+        {
+            Field.Text = ProgramSettings.Document_Edit_text;
+        }
+
+        private void Convert(object sender, MouseButtonEventArgs e)
+        {
+            Field.Text = ProgramSettings.Document_Convert_text;
+        }
+
+        private void Crypt(object sender, MouseButtonEventArgs e)
+        {
+            Field.Text = ProgramSettings.Document_Crypt_text;
+        }
+
+        private void Settings(object sender, MouseButtonEventArgs e)
+        {
+            Field.Text = ProgramSettings.Document_Settings_text;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MinHeight = 470;
+            MinWidth = 500;
+            this.Title = ProgramSettings.Menu_Documentation;
+
+            Field.Text = ProgramSettings.Document_introduction_text;
+            DocTitle.Text = ProgramSettings.Menu_Documentation;
+            Title_intdrod.Text = ProgramSettings.Document_introduction;
+            Title_Open.Text = ProgramSettings.Document_Open;
+            Title_Save.Text = ProgramSettings.Document_Save;
+            Title_Edit.Text = ProgramSettings.Document_Edit;
+            Title_Settings.Text = ProgramSettings.Document_Settings;
+            Title_Convert.Text = ProgramSettings.Document_Convert;
+            Title_Crypt.Text = ProgramSettings.Document_Crypt;
         }
     }
 }

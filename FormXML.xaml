@@ -25,8 +25,8 @@
                     </MenuItem>
                     <MenuItem Header="MD5 Hash File" Click="MD5HashFile"></MenuItem>
                 </MenuItem>
-                <MenuItem x:Name="Menu_AddColumn" InputGestureText="Ctrl+K" Header="Add column"></MenuItem>
-                <MenuItem x:Name="Menu_AddRow" InputGestureText="Ctrl+L" Header="Add row"></MenuItem>
+                <MenuItem x:Name="Menu_AddColumn" InputGestureText="Ctrl+K" Header="Add column" Click="AddColumnwMenu"></MenuItem>
+                <MenuItem x:Name="Menu_AddRow" InputGestureText="Ctrl+L" Header="Add row" Click="AddRowMenu"></MenuItem>
                 <Separator />
                 <MenuItem x:Name="Menu_Settings" Header="Settings" InputGestureText="F3" Click="OpenSettings"></MenuItem>
             </MenuItem>
