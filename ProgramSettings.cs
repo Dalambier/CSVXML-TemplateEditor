@@ -174,9 +174,20 @@
                 Document_Crypt_text = "Crypt" +
                 "\n     The file can be encrypted and decrypted using base64 technology by selecting in the menu in the [Edit] tab next [encryption] and in base64 you can select the desired action." +
                 "\n     You can check the hash of the file by going to the [Edit] tab and selecting MD5 Hash File. After that, a form will open in which the hash of the file will be written and you can compare it with another hash that the user has. The program will write whether the hash sums match or not..";
-                Document_Edit_text = "";
-                Document_Convert_text = "";
-                Document_Settings_text = "";
+                Document_Edit_text = "Edit" +
+                "\n     After successfully opening the file, it is possible to interact with the file data." +
+                "\n     Features: Add a row by right-clicking on the table, calling the context menu, from which you can select the operation [Add row], you can also add a column from the same context menu, it is worth remembering that the column names should preferably be without numbers. These actions are also available from the menu, in the [Edit] tab." +
+                "\n     To delete a line, click on the element of the unnecessary line and press the [Delete] key on the keyboard." +
+                "\n     The contents of the cells in the table can be edited by clicking on the element and writing the desired value.";
+                Document_Convert_text = "Convert" +
+                "\n     It is possible to quickly convert the file, without interacting with the visual table. For this action, you need to drag the file into the program by the Drag system&Drop or click on [Convert] in the program menu." +
+                "\n     After the conversion, another c file appears next to the file with the signature in which format it was converted." +
+                "\n     When converting from XML to CSV, you must specify the column names for the new file, based on the data shown in the table in the form.";
+                Document_Settings_text = "Settings" +
+                "\n     To change the settings of this software, the user needs to go to the [Edit] tab, then click on [Settings]." +
+                "\n     In the settings, you can change the software language to English and Russian, change the delimiter for CSV files, and change the names of the secondary and main XML elements. When you hover over the input fields, hints are displayed." +
+                "\n     If, for example, the delimiter [;] is specified in the settings, but the user tries to open a CSV file with the delimiter [,], the program will not be able to read the file." +
+                "\n     You can open the file and change the delimiter in the settings and save it to change all the delimiters in the file.";
             }
             else if (Properties.Settings.Default.Language == "Russian")
             {
@@ -280,7 +291,7 @@
                 "\n     После конвертации, рядом с файлом появляется другой с файл с подписью в какой формат был сконвертирован." +
                 "\n     При конвертации из XML в CSV, необходимо указать названия столбцов для нового файла, на основе показанных данных с таблице в форме.";
                 Document_Settings_text = "Настройки" +
-                "\n     Чтобы изменить настройки данного ПО, пользователю неоьбходимо зайти в вкладку [Правка], там же нажать на [Настройки]." +
+                "\n     Чтобы изменить настройки данного ПО, пользователю необходимо зайти в вкладку [Правка], там же нажать на [Настройки]." +
                 "\n     В настройках можно менять язык ПО на английский и русский, изменять делимитер для CSV файлов и менять названия второстепенного и основного элементов XML. При наведении на поля ввода, показываются подсказки." +
                 "\n     Если например в настройках указан делимитер [;], но пользователь пытается открыть CSV-файл с делимитером [,], программа не сможет читать файл." +
                 "\n     Можно открыть файл и поменять делимитер в настрйоках и сохранить для изменения всех делимитеров в файле.";
