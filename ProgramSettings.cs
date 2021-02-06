@@ -161,16 +161,20 @@
                 Document_Edit = "Edit";
                 Document_Convert = "Convert";
                 Document_Settings = "Settings";
-                Document_introduction_text = "";
-                Document_Open_text = "Introduction" +
+                Document_introduction_text = "Introduction" +
                 "\n     This software is designed to quickly edit / convert CSV and XML files, change the delimiter in CSV files, change the names of XML elements, and other operations." +
                 "\n     If there is a low performance of the application, you need to increase the amount of RAM." +
                 "\n     When processing (converting, saving, opening, encrypting) large files, it is not recommended to use a computer to avoid loss of file processing speed and various errors.";
-                Document_Save_text = "Open" +
+                Document_Open_text = "Open" +
                 "\n     In order to work with a file, you need to either create it or open it." +
                 "\n     The file is created by pressing Ctrl+N or by clicking on [NEW] in the top menu. You need to write the column names for the file. It is worth remembering that it is not desirable to name the column names with numbers and create less than two columns for the file.." +
                 "\n     Opening a file allows you to open a file in the form of a table in the program to view and change information in it. To open it, you must either transfer the desired file to the program using the Drag system&Drop and click on the [Open] button, or click in the top menu [Open]" +
                 "\n     It is worth remembering that to open a CSV file, you need to set the correct delimiter in the settings to read the file correctly.";
+                Document_Save_text = "Save" +
+                "\n     After working with the file, you can save it to your own storage medium. The program includes 2 types of file saving -[Save as] and [Save]." +
+                "\n     [Save] works after pressing Ctrl+S or pressing [Save] in the main menu. In this case, the file that was opened is overwritten. In this case, the extension remains the same as it was." +
+                "\n     [Save as] allows you not to change the open file, saving the changes to a new one, in this case, you can set the extensions for the saved file. To perform this operation, click on [Save as] in the top menu." +
+                "\n     You can open the file and change the delimiter and XML elements in the settings and save the file with the new parameters.";
                 Document_Crypt_text = "Crypt" +
                 "\n     The file can be encrypted and decrypted using base64 technology by selecting in the menu in the [Edit] tab next [encryption] and in base64 you can select the desired action." +
                 "\n     You can check the hash of the file by going to the [Edit] tab and selecting MD5 Hash File. After that, a form will open in which the hash of the file will be written and you can compare it with another hash that the user has. The program will write whether the hash sums match or not..";
